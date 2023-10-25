@@ -1,16 +1,10 @@
-package zoopunk.backend;
+package zoopunk.backend.Repository;
 
-import org.hibernate.annotations.SQLSelect;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import zoopunk.backend.Entity.User;
 
-import javax.sql.DataSource;
-import java.rmi.server.UID;
 import java.util.List;
 import java.util.UUID;
 

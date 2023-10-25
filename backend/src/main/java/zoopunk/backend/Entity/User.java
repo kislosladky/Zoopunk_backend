@@ -1,4 +1,4 @@
-package zoopunk.backend;
+package zoopunk.backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;

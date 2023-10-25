@@ -1,7 +1,8 @@
-package zoopunk.backend;
+package zoopunk.backend.Service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import zoopunk.backend.Repository.UserRepository;
 
 import java.util.Collections;
 
