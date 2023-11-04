@@ -28,6 +28,4 @@ public class User {
 
     @Column(name="QUIZ_PROGRESS")
     private String quizProgress;
-
-    //структура таблицы без методов
 }
