@@ -15,6 +15,6 @@ public class UserService {
     @Transactional
     public void execute() {
         userRepo.findAllById(Collections.emptyList());
-        userRepo.customSelect(Collections.emptyList());
+        userRepo.customSelect();
     }
 }

@@ -8,25 +8,25 @@ import jakarta.persistence.Id;
 import java.util.List;
 import java.util.UUID;
 
-@Entity(name="USERS")
+@Entity(name="users")
 public class User {
-    @Column(name="ID")
+    @Column(name="id")
     @Id
     private UUID id;
 
-    @Column(name="FIRST_NAME")
+    @Column(name="firstName")
     private String firstName;
 
-    @Column(name="LAST_NAME")
+    @Column(name="lastName")
     private String lastName;
 
-    @Column(name="NICKNAME")
+    @Column(name="nickname")
     private String nickname;
 
-    @Column(name="AGE")
+    @Column(name="age")
     private int age;
 
-    @Column(name="QUIZ_PROGRESS")
+    @Column(name="quizProgress")
     private String quizProgress;
 
     //структура таблицы без методов

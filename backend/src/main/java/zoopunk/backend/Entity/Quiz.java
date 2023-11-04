@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Entity
 public class Quiz {
-    @Column(name="ID")
+    @Column(name="id")
     @Id
     private UUID id;
 
-    @Column(name="QUIZ_CONTENT")
+    @Column(name="quizContent")
     private String quizContent;
 }

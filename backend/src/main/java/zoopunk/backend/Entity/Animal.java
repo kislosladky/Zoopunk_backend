@@ -7,18 +7,18 @@ import jakarta.persistence.Id;
 
 import java.util.UUID;
 
-@Entity(name="ANIMALS")
+@Entity(name="animals")
 public class Animal {
-    @Column(name="ID")
+    @Column(name="id")
     @Id
     private UUID id;
 
-    @Column(name="SPECIES")
+    @Column(name="species")
     private String species;
 
-    @Column(name="NAME")
+    @Column(name="name")
     private String name;
 
-    @Column(name="DESCRIPTION")
+    @Column(name="description")
     private String description;
 }
