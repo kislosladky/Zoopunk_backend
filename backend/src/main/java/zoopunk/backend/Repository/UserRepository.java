@@ -16,4 +16,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @Query(nativeQuery = true, value = "SELECT * FROM USERS WHERE ID IN ?1")
     List<User> customSelect(Iterable<UUID> uuids);
     // делает все сам, имплементить ничего не надо
+
+
+    List<User> findByAgeBetween(Integer lower, Integer upper);
 }

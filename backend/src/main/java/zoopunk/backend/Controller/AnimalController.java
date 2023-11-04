@@ -3,8 +3,8 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Service.AnimalService;
 
 import java.util.List;
@@ -15,8 +15,8 @@ public class AnimalController {
     @Autowired
     AnimalService animalService;
 
-    @GetMapping("/{species}")
-    public void getName(@PathVariable String species) {
+    @GetMapping("/bySpecies")
+    public void getName(@RequestParam String species) {
         List<String> response = animalService.getNameBySpecies(species);
     }
 }
