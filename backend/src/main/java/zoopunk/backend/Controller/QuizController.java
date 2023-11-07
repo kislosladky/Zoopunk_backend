@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Service.QuizService;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,5 +33,15 @@ public class QuizController {
     @GetMapping("/example")
     public void example() {
         quizService.example();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<String>> allQuizes() {
+        List<String> response = quizService.allQuizes();
+        if (!response.isEmpty()) {
+            return ResponseEntity.ok(response);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

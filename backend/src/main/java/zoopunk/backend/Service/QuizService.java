@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import zoopunk.backend.Repository.QuizRepository;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,4 +22,7 @@ public class QuizService {
         return quizRepository.findQuizById(uuid);
     }
 
+    public List<String> allQuizes() {
+        return quizRepository.findAllQuiz();
+    }
 }
