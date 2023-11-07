@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import zoopunk.backend.Repository.QuizRepository;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,9 +17,8 @@ public class QuizService {
         quizRepository.findAllById(Collections.emptyList());
     }
 
-    public String quizById(UUID uuid) {
-        String result = quizRepository.findQuizById(uuid);
-        return result;
+    public Optional<String> quizById(UUID uuid) {
+        return quizRepository.findQuizById(uuid);
     }
 
 }

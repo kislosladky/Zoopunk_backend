@@ -1,6 +1,8 @@
 package zoopunk.backend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,14 @@ public class AnimalController {
     AnimalService animalService;
 
     @GetMapping("/bySpecies")
-    public void getName(@RequestParam String species) {
+    public ResponseEntity<List<String>> getName(@RequestParam String species) {
         List<String> response = animalService.getNameBySpecies(species);
+        if (!response.isEmpty()) {
+            return ResponseEntity.ok(response);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
+
 }
