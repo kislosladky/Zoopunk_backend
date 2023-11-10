@@ -2,12 +2,10 @@ package zoopunk.backend.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import zoopunk.backend.Entity.Quiz;
 import zoopunk.backend.Repository.QuizRepository;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class QuizService {
@@ -22,7 +20,12 @@ public class QuizService {
         return quizRepository.findQuizById(uuid);
     }
 
-    public List<String> allQuizes() {
-        return quizRepository.findAllQuiz();
+    public List<String> allQuizzes() {
+        List<Quiz> quizzes = quizRepository.findAll();
+        List<String> quizNames = new ArrayList<>();
+        for (Quiz quiz : quizzes) {
+            quizNames.add(quiz.getQuizContent());
+        }
+        return quizNames;
     }
 }

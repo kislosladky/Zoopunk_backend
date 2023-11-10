@@ -14,15 +14,14 @@ import zoopunk.backend.Entity.Quiz;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, UUID> {
-    interface QuizContentOnly {
-        String getQuizContent();
-    }
+
     List<Quiz> findAllById(Iterable<UUID> uuids);
 
     //откуда мы должны брать uuid?
     Optional<String> findQuizById(UUID uuid);
 
-    @Query(nativeQuery = true, value = "SELECT quizContent FROM QUIZZES")
-    List<String> findAllQuiz();
+//    @Query(nativeQuery = true, value = "SELECT quizContent FROM QUIZZES")
+//    List<String> findAllQuiz();
+
 
 }

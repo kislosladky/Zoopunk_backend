@@ -11,6 +11,8 @@ import java.util.Collections;
 
 //import java.util.Collections;
  import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AnimalService {
@@ -26,4 +28,13 @@ public class AnimalService {
         return response;
     }
 
+    public Optional<Animal> getAnimalById(UUID id) {
+        return animalRepository.findById(id);
+    }
+
+
+
+    public List<Animal> getAllAnimals() {
+        return animalRepository.findAll();
+    }
 }
