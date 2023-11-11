@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import zoopunk.backend.Entity.Quiz;
 import zoopunk.backend.Service.QuizService;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public class QuizController {
 
     @GetMapping("/byId")
     public ResponseEntity<String> getQuizById(@RequestParam UUID id) {
-        Optional<String> response = quizService.quizById(id);
+        Optional<Quiz> response = quizService.quizById(id);
         if (response.isPresent()) {
-            return ResponseEntity.ok(response.get());
+            return ResponseEntity.ok(response.get().getQuizContent());
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -44,5 +45,4 @@ public class QuizController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

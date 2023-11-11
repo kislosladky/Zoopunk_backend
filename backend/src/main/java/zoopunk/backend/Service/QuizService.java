@@ -16,16 +16,13 @@ public class QuizService {
         quizRepository.findAllById(Collections.emptyList());
     }
 
-    public Optional<String> quizById(UUID uuid) {
-        return quizRepository.findQuizById(uuid);
+    public Optional<Quiz> quizById(UUID uuid) {
+        return quizRepository.findById(uuid);
     }
 
+
     public List<String> allQuizzes() {
-        List<Quiz> quizzes = quizRepository.findAll();
-        List<String> quizNames = new ArrayList<>();
-        for (Quiz quiz : quizzes) {
-            quizNames.add(quiz.getQuizContent());
-        }
-        return quizNames;
+        return quizRepository.findAllQuizzes();
     }
 }
+

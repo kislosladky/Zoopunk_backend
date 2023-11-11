@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/byId")
+    @GetMapping("/userById")
     public ResponseEntity<User> getUserById(@RequestParam UUID id) {
         Optional<User> response = userService.findById(id);
         if (response.isPresent()) {
