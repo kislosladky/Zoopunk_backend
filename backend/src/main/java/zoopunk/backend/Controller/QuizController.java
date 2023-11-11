@@ -7,32 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import zoopunk.backend.Entity.Animal;
-import zoopunk.backend.Service.AnimalService;
+import zoopunk.backend.Service.QuizService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/animal")
-public class AnimalController {
+@RequestMapping("/quiz")
+public class QuizController {
     @Autowired
-    AnimalService animalService;
-
-    @GetMapping("/bySpecies")
-    public ResponseEntity<List<String>> getName(@RequestParam String species) {
-        List<String> response = animalService.getNameBySpecies(species);
-        if (!response.isEmpty()) {
-            return ResponseEntity.ok(response);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+    QuizService quizService;
 
     @GetMapping("/byId")
-    public ResponseEntity<Animal> getAnimalsById(@RequestParam UUID id) {
-        Optional<Animal> response = animalService.getAnimalById(id);
+    public ResponseEntity<String> getQuizById(@RequestParam UUID id) {
+        Optional<String> response = quizService.quizById(id);
         if (response.isPresent()) {
             return ResponseEntity.ok(response.get());
         } else {
@@ -40,17 +29,20 @@ public class AnimalController {
         }
     }
 
+    ///I'm not sure if we need it, actually
+    @GetMapping("/example")
+    public void example() {
+        quizService.example();
+    }
+
     @GetMapping("/all")
-    public ResponseEntity<List<Animal>> getAllAnimals() {
-        List<Animal> response = animalService.getAllAnimals();
+    public ResponseEntity<List<String>> getAllQuizzes() {
+        List<String> response = quizService.allQuizzes();
         if (!response.isEmpty()) {
             return ResponseEntity.ok(response);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
-
 
 }

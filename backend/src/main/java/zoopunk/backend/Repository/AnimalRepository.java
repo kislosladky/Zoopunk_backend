@@ -14,5 +14,4 @@ public interface AnimalRepository extends JpaRepository<Animal, UUID> {
     List<Animal> findAllById(Iterable<UUID> uuids);
 
     List<String> findAllNamesBySpecies(String species);
-
 }
