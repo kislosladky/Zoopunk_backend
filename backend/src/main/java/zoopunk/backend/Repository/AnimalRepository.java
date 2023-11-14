@@ -3,6 +3,7 @@ package zoopunk.backend.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 import zoopunk.backend.Entity.Animal;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, UUID> {
     List<Animal> findAllById(Iterable<UUID> uuids);
+//    Animal[] findAllById(Iterable<UUID> uuids);
 
     List<String> findAllNamesBySpecies(String species);
 }
