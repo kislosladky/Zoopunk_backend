@@ -7,37 +7,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import zoopunk.backend.Service.UserService;
-import zoopunk.backend.Entity.User;
+import zoopunk.backend.Entity.Quiz;
+import zoopunk.backend.Service.QuizService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/quiz")
+public class QuizController {
     @Autowired
-    UserService userService;
+    QuizService quizService;
 
-    @GetMapping("/userById")
-    public ResponseEntity<User> getUserById(@RequestParam UUID id) {
-        Optional<User> response = userService.findById(id);
+    @GetMapping("/byId")
+    public ResponseEntity<String> getQuizById(@RequestParam UUID id) {
+        Optional<Quiz> response = quizService.quizById(id);
         if (response.isPresent()) {
-            return ResponseEntity.ok(response.get());
+            return ResponseEntity.ok(response.get().getQuizContent());
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/ageBetween")
-    public ResponseEntity<List<User>> getUsersWithAgeBetween(@RequestParam Integer lowerAge, @RequestParam Integer upperAge) {
-        List<User> response = userService.findByAgeBetween(lowerAge, upperAge);
+    ///I'm not sure if we need it, actually
+    @GetMapping("/example")
+    public void example() {
+        quizService.example();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<String>> getAllQuizzes() {
+        List<String> response = quizService.allQuizzes();
         if (!response.isEmpty()) {
             return ResponseEntity.ok(response);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

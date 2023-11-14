@@ -11,6 +11,8 @@ import java.util.Collections;
 
 //import java.util.Collections;
  import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AnimalService {
@@ -22,8 +24,14 @@ public class AnimalService {
     }
 
     public List<String> getNameBySpecies(String species) {
-        List<String> response = animalRepository.findAllNamesBySpecies(species);
-        return response;
+        return animalRepository.findAllNamesBySpecies(species);
     }
 
+    public Optional<Animal> getAnimalById(UUID id) {
+        return animalRepository.findById(id);
+    }
+
+    public List<Animal> getAllAnimals() {
+        return animalRepository.findAll();
+    }
 }
