@@ -4,20 +4,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity(name="users")
 public class User {
+    public User() {}
+
+    public User(UUID id,
+                String firstName,
+                String lastName,
+                String nickname,
+                int age,
+                String quizProgress)
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickname = nickname;
+        this.age = age;
+        this.quizProgress = null;
+    }
+
     @Column(name="id")
     @Id
     private UUID id;
 
-    @Column(name="firstName")
+    @Column(name="firstname")
     private String firstName;
 
-    @Column(name="lastName")
+    @Column(name="lastname")
     private String lastName;
 
     @Column(name="nickname")
@@ -26,6 +44,31 @@ public class User {
     @Column(name="age")
     private int age;
 
-    @Column(name="quizProgress")
+    @Column(name="quizprogress", columnDefinition = "json")
+    @ColumnTransformer(write = "?::jsonb")
     private String quizProgress;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getQuizProgress() {
+        return quizProgress;
+    }
 }

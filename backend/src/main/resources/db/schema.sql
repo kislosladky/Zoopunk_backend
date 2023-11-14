@@ -1,10 +1,10 @@
 CREATE TABLE users (
         id              UUID PRIMARY KEY NOT NULL,
-        firstName       TEXT,
-        lastName        TEXT,
+        firstname       TEXT,
+        lastname        TEXT,
         nickname        TEXT,
         age             INTEGER,
-        quizProgress    JSON
+        quizprogress    JSON
 );
 
 CREATE TABLE animals (
@@ -16,5 +16,5 @@ CREATE TABLE animals (
 
 CREATE TABLE quizzes (
         id              UUID PRIMARY KEY NOT NULL,
-        quizContent     JSON
+        quizcontent     JSON
 );
