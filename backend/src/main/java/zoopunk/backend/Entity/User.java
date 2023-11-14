@@ -47,4 +47,28 @@ public class User {
     @Column(name="quizprogress", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")
     private String quizProgress;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getQuizProgress() {
+        return quizProgress;
+    }
 }

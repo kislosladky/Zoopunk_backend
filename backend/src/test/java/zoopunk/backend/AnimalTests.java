@@ -7,7 +7,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import zoopunk.backend.Entity.Animal;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.Repository.AnimalRepository;
 import zoopunk.backend.Repository.UserRepository;
 
 import java.lang.reflect.Array;
@@ -17,42 +19,51 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserTests {
+public class AnimalTests {
     @Autowired
     TestRestTemplate restTemplate;
 
+    @Autowired
+    AnimalRepository animalRepo;
+
+//    @Test
+//    void findStreetDogs() {
+//        ResponseEntity<Animal[]> response = restTemplate
+//                .getForEntity("/animal/getNameBySpecies", Animal[].class);
+//    }
+
     @Test
-    void findExistingPerson() {
-        ResponseEntity<User> response = restTemplate
-                .getForEntity("/user/userById?id=85557a27-6908-415f-ad16-e8f959871c54", User.class);
+    void findBobikById() {
+        ResponseEntity<Animal> response = restTemplate
+                .getForEntity("/animal/entityById?id=5ca96c26-afc8-4900-929e-9ae6bdb8d9dc", Animal.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        User buddy = response.getBody();
+        Animal bobik = response.getBody();
 
-        assertEquals(buddy.getFirstName(), "Олег");
+        assertEquals("Бобик", bobik.getName());
     }
 
     @Test
     void findNobody() {
-        UUID randomId = UUID.randomUUID();
-
-        ResponseEntity<User> response = restTemplate
-                .getForEntity("/user/byId?id=" + randomId.toString(), User.class);
+        ResponseEntity<Animal> response = restTemplate
+                .getForEntity("/animal/entityById?id=" + UUID.randomUUID(), Animal.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
-    void findListOfPersons() {
-        ResponseEntity<User[]> response = restTemplate
-                .getForEntity("/user/ageBetween?lowerAge=0&upperAge=10", User[].class);
+    void findAllAnimals() {
+        ResponseEntity<Animal[]> response = restTemplate
+                .getForEntity("/animal/all", Animal[].class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        User[] users = response.getBody();
-        List<String> names = Arrays.stream(users).map(User::getFirstName).toList();
-        assertTrue(equalLists(names, List.of("Олег", "Антон", "Елизавета")));
+        Animal[] animals = response.getBody();
+
+        List<String> names = Arrays.stream(animals).map(Animal::getName).toList();
+
+        assertTrue(equalLists(names, List.of("Бобик", "Шарик", "Мурзик")));
     }
 
 

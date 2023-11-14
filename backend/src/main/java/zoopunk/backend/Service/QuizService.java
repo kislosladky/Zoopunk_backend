@@ -12,10 +12,6 @@ public class QuizService {
     @Autowired
     private QuizRepository quizRepository;
 
-    public void example() {
-        quizRepository.findAllById(Collections.emptyList());
-    }
-
     public Optional<Quiz> quizById(UUID uuid) {
         return quizRepository.findById(uuid);
     }

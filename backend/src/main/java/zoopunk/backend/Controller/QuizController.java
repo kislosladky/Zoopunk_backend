@@ -30,12 +30,6 @@ public class QuizController {
         }
     }
 
-    ///I'm not sure if we need it, actually
-    @GetMapping("/example")
-    public void example() {
-        quizService.example();
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<String>> getAllQuizzes() {
         List<String> response = quizService.allQuizzes();

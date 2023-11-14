@@ -18,6 +18,6 @@ public interface QuizRepository extends JpaRepository<Quiz, UUID> {
     List<Quiz> findAllById(Iterable<UUID> uuids);
 
 
-    @Query(nativeQuery = true, value = "SELECT quizContent FROM QUIZZES")
+    @Query(nativeQuery = true, value = "SELECT quizcontent FROM QUIZZES")
     List<String> findAllQuizzes();
 }
