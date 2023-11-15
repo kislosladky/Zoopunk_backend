@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Entity.Animal;
+import zoopunk.backend.EntityList.AnimalList;
 import zoopunk.backend.Service.AnimalService;
 
 import java.util.List;
@@ -22,10 +23,13 @@ public class AnimalController {
     AnimalService animalService;
 
     @GetMapping("/nameBySpecies")
-    public ResponseEntity<List<String>> getName(@RequestParam String species) {
+    public ResponseEntity<AnimalList> getName(@RequestParam String species) {
         List<String> response = animalService.getNameBySpecies(species);
+
         if (!response.isEmpty()) {
-            return ResponseEntity.ok(response);
+            AnimalList animalList = new AnimalList();
+            animalList.setNames(response);
+            return ResponseEntity.ok(animalList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -34,18 +38,17 @@ public class AnimalController {
     @GetMapping("/entityById")
     public ResponseEntity<Animal> getAnimalsById(@RequestParam UUID id) {
         Optional<Animal> response = animalService.getAnimalById(id);
-        if (response.isPresent()) {
-            return ResponseEntity.ok(response.get());
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.of(response);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Animal>> getAllAnimals() {
+    public ResponseEntity<AnimalList> getAllAnimals() {
         List<Animal> response = animalService.getAllAnimals();
+
         if (!response.isEmpty()) {
-            return ResponseEntity.ok(response);
+            AnimalList animalList = new AnimalList();
+            animalList.setAnimals(response);
+            return ResponseEntity.ok(animalList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
