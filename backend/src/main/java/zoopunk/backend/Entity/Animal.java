@@ -38,6 +38,11 @@ public class Animal {
     @ColumnTransformer(write = "?::jsonb")
     private String description;
 
+    @Column(name="imagepath")
+    private String image;
+
+    @Column(name = "background")
+    private String background;
 
     public UUID getId() {
         return id;
