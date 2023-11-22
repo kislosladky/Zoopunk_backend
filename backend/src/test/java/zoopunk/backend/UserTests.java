@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.EntityList.UserList;
 import zoopunk.backend.Repository.UserRepository;
 
 import java.lang.reflect.Array;
@@ -38,27 +39,27 @@ class UserTests {
         UUID randomId = UUID.randomUUID();
 
         ResponseEntity<User> response = restTemplate
-                .getForEntity("/user/byId?id=" + randomId.toString(), User.class);
+                .getForEntity("/user/byId?id=" + randomId, User.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
     void findListOfPersons() {
-        ResponseEntity<User[]> response = restTemplate
-                .getForEntity("/user/ageBetween?lowerAge=0&upperAge=10", User[].class);
+        ResponseEntity<UserList> response = restTemplate
+                .getForEntity("/user/ageBetween?lowerAge=0&upperAge=10", UserList.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        User[] users = response.getBody();
-        List<String> names = Arrays.stream(users).map(User::getFirstName).toList();
+        List<User> users = response.getBody().getUserList();
+        List<String> names = users.stream().map(User::getFirstName).toList();
         assertTrue(equalLists(names, List.of("Олег", "Антон", "Елизавета")));
     }
 
 
     private boolean equalLists(List<String> arr1, List<String> arr2) {
-        HashSet<String> set1 = new HashSet<String>(arr1);
-        HashSet<String> set2 = new HashSet<String>(arr2);
+        HashSet<String> set1 = new HashSet<>(arr1);
+        HashSet<String> set2 = new HashSet<>(arr2);
         return set1.equals(set2);
     }
 }

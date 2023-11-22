@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import zoopunk.backend.Entity.Animal;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.EntityList.AnimalList;
 import zoopunk.backend.Repository.AnimalRepository;
 import zoopunk.backend.Repository.UserRepository;
 
@@ -26,11 +27,11 @@ public class AnimalTests {
     @Autowired
     AnimalRepository animalRepo;
 
-//    @Test
-//    void findStreetDogs() {
-//        ResponseEntity<Animal[]> response = restTemplate
-//                .getForEntity("/animal/getNameBySpecies", Animal[].class);
-//    }
+    @Test
+    void findStreetDogs() {
+        ResponseEntity<AnimalList> response = restTemplate
+                .getForEntity("/animal/getNameBySpecies", AnimalList.class);
+    }
 
     @Test
     void findBobikById() {
@@ -54,22 +55,22 @@ public class AnimalTests {
 
     @Test
     void findAllAnimals() {
-        ResponseEntity<Animal[]> response = restTemplate
-                .getForEntity("/animal/all", Animal[].class);
+        ResponseEntity<AnimalList> response = restTemplate
+                .getForEntity("/animal/all", AnimalList.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        Animal[] animals = response.getBody();
+        AnimalList animals = response.getBody();
 
-        List<String> names = Arrays.stream(animals).map(Animal::getName).toList();
+        List<String> names = animals.getNames();
 
         assertTrue(equalLists(names, List.of("Бобик", "Шарик", "Мурзик")));
     }
 
 
     private boolean equalLists(List<String> arr1, List<String> arr2) {
-        HashSet<String> set1 = new HashSet<String>(arr1);
-        HashSet<String> set2 = new HashSet<String>(arr2);
+        HashSet<String> set1 = new HashSet<>(arr1);
+        HashSet<String> set2 = new HashSet<>(arr2);
         return set1.equals(set2);
     }
 }

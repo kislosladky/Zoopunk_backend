@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import zoopunk.backend.Controller.UserController;
 import zoopunk.backend.Entity.Quiz;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.EntityList.QuizList;
 import zoopunk.backend.Repository.QuizRepository;
 import zoopunk.backend.Repository.UserRepository;
 
@@ -40,13 +41,13 @@ public class QuizTests {
 
     @Test
     void findAllQuizzes() {
-        ResponseEntity<String[]> response = restTemplate
-                .getForEntity("/quiz/all", String[].class);
+        ResponseEntity<QuizList> response = restTemplate
+                .getForEntity("/quiz/all", QuizList.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        String[] allQuizzes = response.getBody();
+        List<String> allQuizzes = response.getBody().getQuizNames();
 
-        assertEquals(allQuizzes.length, 1);
+        assertEquals(allQuizzes.size(), 1);
     }
 }

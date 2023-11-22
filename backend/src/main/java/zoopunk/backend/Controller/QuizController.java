@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Entity.Quiz;
+import zoopunk.backend.EntityList.QuizList;
 import zoopunk.backend.Service.QuizService;
 
 import java.util.List;
@@ -23,7 +24,10 @@ public class QuizController {
     @GetMapping("/byId")
     public ResponseEntity<String> getQuizById(@RequestParam UUID id) {
         Optional<Quiz> response = quizService.quizById(id);
+
         if (response.isPresent()) {
+            //Here I would also want to use ResponseEntity.of,
+            //but we need to send only one field of entity
             return ResponseEntity.ok(response.get().getQuizContent());
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -31,10 +35,13 @@ public class QuizController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllQuizzes() {
+    public ResponseEntity<QuizList> getAllQuizzes() {
         List<String> response = quizService.allQuizzes();
+
         if (!response.isEmpty()) {
-            return ResponseEntity.ok(response);
+            QuizList quizList = new QuizList();
+            quizList.setQuizNames(response);
+            return ResponseEntity.ok(quizList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
