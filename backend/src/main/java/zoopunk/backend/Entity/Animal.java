@@ -28,16 +28,60 @@ public class Animal {
     @Id
     private UUID id;
 
+    @Column(name="name")
+    private String name;
+
+    @Column(name="animalclass")
+    private String animalclass;
+
+    @Column(name="family")
+    private String family;
+
     @Column(name="species")
     private String species;
 
-    @Column(name="name")
-    private String name;
 
     @Column(name="description", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")
     private String description;
 
+    @Column(name="imgpath")
+    private String imgpath;
+
+    @Column(name="background")
+    private String background;
+
+    public String getAnimalclass() {
+        return animalclass;
+    }
+
+    public void setAnimalclass(String animalclass) {
+        this.animalclass = animalclass;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
 
     public UUID getId() {
         return id;

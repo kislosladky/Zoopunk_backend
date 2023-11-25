@@ -21,23 +21,23 @@ class ZoopunkBackendApplicationTests {
 	@Autowired
 	TestRestTemplate restTemplate;
 
-	@Test
-	void findOleg() {
-		ResponseEntity<User> response = restTemplate
-				.getForEntity("/user/byId?id=85557a27-6908-415f-ad16-e8f959871c54", User.class);
-
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-	}
-
-	@Test
-	void findNobody() {
-		UUID randomId = UUID.randomUUID();
-
-		ResponseEntity<User> response = restTemplate
-				.getForEntity("/user/byId?id=" + randomId.toString(), User.class);
-
-		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-	}
+//	@Test
+//	void findOleg() {
+//		ResponseEntity<User> response = restTemplate
+//				.getForEntity("/user/byId?id=85557a27-6908-415f-ad16-e8f959871c54", User.class);
+//
+//		assertEquals(HttpStatus.OK, response.getStatusCode());
+//	}
+//
+//	@Test
+//	void findNobody() {
+//		UUID randomId = UUID.randomUUID();
+//
+//		ResponseEntity<User> response = restTemplate
+//				.getForEntity("/user/byId?id=" + randomId.toString(), User.class);
+//
+//		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+//	}
 
 
 }

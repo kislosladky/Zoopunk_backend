@@ -4,17 +4,37 @@ CREATE TABLE users (
         lastname        TEXT,
         nickname        TEXT,
         age             INTEGER,
-        quizprogress    JSON
+        image           TEXT
+);
+
+CREATE TABLE quizprogress (
+        userid          UUID,
+        quizid          UUID,
+        quizresult      INTEGER
 );
 
 CREATE TABLE animals (
         id              UUID PRIMARY KEY NOT NULL,
-        species         TEXT,
         name            TEXT,
-        description     JSON
+        animalclass     TEXT,
+        family          TEXT,
+        species         TEXT,
+        description     JSON,
+        imgpath         TEXT,
+        background      TEXT
 );
 
 CREATE TABLE quizzes (
         id              UUID PRIMARY KEY NOT NULL,
+        achievementsid  UUID,
         quizcontent     JSON
+);
+
+CREATE TABLE achievements (
+    userid              UUID,
+    id                  UUID,
+    title               TEXT,
+    description         TEXT,
+    pointsfordone       INTEGER,
+    done                INTEGER
 );
