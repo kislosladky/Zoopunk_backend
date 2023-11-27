@@ -36,11 +36,11 @@ public class QuizController {
 
     @GetMapping("/all")
     public ResponseEntity<QuizList> getAllQuizzes() {
-        List<String> response = quizService.allQuizzes();
+        List<Quiz> response = quizService.allQuizzes();
 
         if (!response.isEmpty()) {
             QuizList quizList = new QuizList();
-            quizList.setQuizNames(response);
+            quizList.setQuizzes(response);
             return ResponseEntity.ok(quizList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

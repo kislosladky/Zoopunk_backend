@@ -17,8 +17,12 @@ public class QuizService {
     }
 
 
-    public List<String> allQuizzes() {
+    public List<String> allQuizContents() {
         return quizRepository.findAllQuizzes();
+    }
+
+    public List<Quiz> allQuizzes() {
+        return quizRepository.findAll();
     }
 }
 

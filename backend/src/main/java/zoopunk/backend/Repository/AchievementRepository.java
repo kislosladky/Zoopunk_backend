@@ -8,6 +8,5 @@ import zoopunk.backend.Entity.Achievement;
 import java.util.UUID;
 
 @Repository
-@Table(name="achievements", schema = "public")
 public interface AchievementRepository extends JpaRepository<Achievement, UUID> {
 }

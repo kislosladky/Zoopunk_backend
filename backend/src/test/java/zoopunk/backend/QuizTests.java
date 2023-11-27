@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import zoopunk.backend.Controller.UserController;
+import zoopunk.backend.Entity.Achievement;
 import zoopunk.backend.Entity.Quiz;
 import zoopunk.backend.Entity.User;
 import zoopunk.backend.EntityList.QuizList;
@@ -46,7 +47,7 @@ public class QuizTests {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        List<String> allQuizzes = response.getBody().getQuizNames();
+        List<Quiz> allQuizzes = response.getBody().getQuizzes();
 
         assertEquals(allQuizzes.size(), 1);
     }

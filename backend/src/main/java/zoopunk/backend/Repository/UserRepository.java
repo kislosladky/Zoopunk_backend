@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-@Table(name="users", schema = "public")
 public interface UserRepository extends JpaRepository<User, UUID> {
 
     List<User> findAllById(Iterable<UUID> uuids);
