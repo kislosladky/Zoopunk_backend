@@ -21,8 +21,8 @@ public class Achievement {
     @Column(name="description")
     private String description;
 
-    @Column(name="progress")
-    private int progress;
+    @Column(name="pointsfordone")
+    private int pointsfordone;
 
     @Column(name="done")
     private int done;
@@ -51,12 +51,12 @@ public class Achievement {
         this.description = description;
     }
 
-    public int getProgress() {
-        return progress;
+    public int getPointsfordone() {
+        return pointsfordone;
     }
 
-    public void setProgress(int progress) {
-        this.progress = progress;
+    public void setPointsfordone(int pointsfordone) {
+        this.pointsfordone = pointsfordone;
     }
 
     public int getDone() {
