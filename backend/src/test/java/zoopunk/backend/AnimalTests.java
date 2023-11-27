@@ -62,7 +62,7 @@ public class AnimalTests {
 
         AnimalList animals = response.getBody();
 
-        List<String> names = animals.getNames();
+        List<String> names = animals.getAnimals().stream().map(Animal::getName).toList();
 
         assertTrue(equalLists(names, List.of("Бобик", "Шарик", "Мурзик")));
     }
