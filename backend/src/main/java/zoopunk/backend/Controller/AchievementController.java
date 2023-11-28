@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zoopunk.backend.Entity.Achievement;
 import zoopunk.backend.EntityList.AchievementList;
-import zoopunk.backend.EntityList.AnimalList;
 import zoopunk.backend.Service.AchievementService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/achievement")
-public class AchievemenController {
+public class AchievementController {
     @Autowired
     AchievementService achievementService;
 

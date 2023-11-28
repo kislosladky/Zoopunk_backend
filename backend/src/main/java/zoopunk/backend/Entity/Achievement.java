@@ -24,8 +24,6 @@ public class Achievement {
     @Column(name="pointsfordone")
     private int pointsfordone;
 
-    @Column(name="done")
-    private int done;
 
     public UUID getId() {
         return id;
@@ -57,13 +55,5 @@ public class Achievement {
 
     public void setPointsfordone(int pointsfordone) {
         this.pointsfordone = pointsfordone;
-    }
-
-    public int getDone() {
-        return done;
-    }
-
-    public void setDone(int done) {
-        this.done = done;
     }
 }
