@@ -44,12 +44,10 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-        User savedUser = userRepository.save(new User(null, user.getFirstName(),
-                user.getLastName(), user.getNickname(), user.getAge()));
+        User savedUser = userRepository.save(user);
 
-        URI location = ucb.path("user/userById/{id}")
+        URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();
-
         return ResponseEntity.created(location).build();
     }
 

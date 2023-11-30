@@ -40,14 +40,16 @@ public class QuizProgressService {
             return;
         }
 
-        Optional<Achievement> optionalAchievement = achievementRepository.findById(achievementId);
+        Optional<Achievement> optionalAchievement =
+                achievementRepository.findById(achievementId);
         if (optionalAchievement.isEmpty()) {
             return;
         }
         Achievement achievement = optionalAchievement.get();
 
         if (quizProgress.getQuizResult() >= achievement.getPointsfordone()) {
-            AchievementProgress progress = new AchievementProgress(quizProgress.getUserid(), achievementId);
+            AchievementProgress progress =
+                    new AchievementProgress(quizProgress.getUserid(), achievementId);
             achievementProgressRepository.save(progress);
         }
     }

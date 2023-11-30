@@ -31,13 +31,10 @@ CREATE TABLE quizzes (
 );
 
 CREATE TABLE achievements (
-    id                  UUID PRIMARY KEY NOT NULL,
+    userid              UUID,
+    id                  UUID,
     title               TEXT,
     description         TEXT,
     pointsfordone       INTEGER,
-);
-
-CREATE TABLE achievementsProgress (
-    userid              UUID,
-    id                  UUID
+    done                INTEGER
 );

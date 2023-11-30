@@ -14,12 +14,14 @@ public class User {
                 String firstName,
                 String lastName,
                 String nickname,
-                int age) {
+                int age,
+                String image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
         this.age = age;
+        this.image = image;
     }
 
     @Column(name="id")
@@ -37,6 +39,11 @@ public class User {
 
     @Column(name="age")
     private int age;
+
+    @Column(name="image")
+    private String image;
+
+
 
     public UUID getId() {
         return id;

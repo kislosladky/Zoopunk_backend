@@ -2,6 +2,7 @@ package zoopunk.backend.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ public class QuizProgress {
     }
 
     @Column(name="userid")
+    @Id
     private UUID userid;
 
     @Column(name="quizid")

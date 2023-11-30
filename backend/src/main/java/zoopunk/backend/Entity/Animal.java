@@ -13,14 +13,22 @@ public class Animal {
     public Animal() {}
 
     public Animal(UUID id,
-                  String species,
                   String name,
-                  String description)
+                  String animalclass,
+                  String family,
+                  String species,
+                  String description,
+                  String imgpath,
+                  String background)
     {
         this.id = id;
         this.species = species;
         this.name = name;
         this.description = description;
+        this.animalclass = animalclass;
+        this.background = background;
+        this.imgpath = imgpath;
+        this.family = family;
     }
 
 

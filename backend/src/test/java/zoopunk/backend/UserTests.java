@@ -6,18 +6,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import zoopunk.backend.Entity.User;
 import zoopunk.backend.EntityList.UserList;
 import zoopunk.backend.Repository.UserRepository;
 
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class UserTests {
     @Autowired
     TestRestTemplate restTemplate;
@@ -56,6 +58,19 @@ class UserTests {
         assertTrue(equalLists(names, List.of("Олег", "Антон", "Елизавета")));
     }
 
+//    @Test
+//    @DirtiesContext
+//    void postUser() {
+//        User user = new User(UUID.randomUUID(), "Илья", "Кислицын", "Хуй", 19, "abhui");
+//        ResponseEntity<Void> postResponse = restTemplate.postForEntity("/user", user, Void.class);
+//        assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
+//
+//        URI uri = postResponse.getHeaders().getLocation();
+//        assertEquals("http://localhost:8080/user/userById%3Fid=" + user.getId(), uri.toString());
+//        ResponseEntity<User> getResponse = restTemplate.getForEntity(uri, User.class);
+//        assertEquals(HttpStatus.OK, getResponse.getStatusCode());
+//        assertEquals(user, getResponse.getBody());
+//    }
 
     private boolean equalLists(List<String> arr1, List<String> arr2) {
         HashSet<String> set1 = new HashSet<>(arr1);
