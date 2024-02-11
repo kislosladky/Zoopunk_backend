@@ -1,5 +1,5 @@
 --changeset me:id1
-DROP TABLE users;
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
         id              UUID PRIMARY KEY NOT NULL,
         firstname       TEXT,
@@ -9,14 +9,14 @@ CREATE TABLE users (
         image           TEXT
 );
 
-DROP TABLE quizprogress;
+DROP TABLE IF EXISTS quizprogress;
 CREATE TABLE quizprogress (
         userid          UUID,
         quizid          UUID,
         quizresult      INTEGER
 );
 
-DROP TABLE animals;
+DROP TABLE IF EXISTS animals;
 CREATE TABLE animals (
         id              UUID PRIMARY KEY NOT NULL,
         name            TEXT,
@@ -28,14 +28,14 @@ CREATE TABLE animals (
         background      TEXT
 );
 
-DROP TABLE quizzes;
+DROP TABLE IF EXISTS quizzes;
 CREATE TABLE quizzes (
         id              UUID PRIMARY KEY NOT NULL,
         achievementsid  UUID,
         quizcontent     JSON
 );
 
-DROP TABLE achievements;
+DROP TABLE IF EXISTS achievements;
 CREATE TABLE achievements (
     userid              UUID,
     id                  UUID,
