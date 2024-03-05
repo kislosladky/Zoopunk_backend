@@ -7,3 +7,7 @@ databaseChangeLog:
       file: db/changelog/db.changelog-achievement-test-info.sql
   - include:
       file: db/changelog/db.changelog-achievementprogress.sql
+#  - include:
+#      file: db/changelog/db.changelog-fill-in-animals-and-user.sql
+  - include:
+      file: db/changelog/db.changelog-fill-in-animals-with-descriptions.sql

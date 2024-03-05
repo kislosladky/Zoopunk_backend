@@ -8,10 +8,10 @@ import java.util.List;
 
 public class AnimalList {
     private List<Animal> animals;
-    private List<String> names;
+//    private List<String> names;
     public AnimalList() {
         animals = null;
-        names = null;
+//        names = null;
     }
     public List<Animal> getAnimals() {
         return animals;
@@ -21,11 +21,11 @@ public class AnimalList {
         this.animals = animals;
     }
 
-    public List<String> getNames() {
-        return names;
-    }
+//    public List<String> getNames() {
+//        return names;
+//    }
 
-    public void setNames(List<String> names) {
-        this.names = names;
-    }
+//    public void setNames(List<String> names) {
+//        this.names = names;
+//    }
 }
