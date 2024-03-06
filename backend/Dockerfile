@@ -1,17 +1,14 @@
-FROM gradle:7.4.1-jdk17 AS compile-image
+FROM gradle:jdk17 AS compile-image
 
 WORKDIR /app
-ARG GRADLE_ARG="build --no-daemon"
 COPY . /app
-COPY *.gradle.kts /app
 
-USER root
-RUN chown -R gradle /app
-USER gradle
-RUN gradle ${GRADLE_ARG}
+RUN gradle build -x test
 
-FROM openjdk:17-jdk AS runtime-image
+FROM arm32v7/eclipse-temurin:17-jre AS runtime-image
 
-COPY --from=compile-image /app/build/libs/*.jar app.jar
+COPY --from=compile-image /app/build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
 
-CMD [ "/bin/bash", "-c", "java -jar app.jar"]
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
