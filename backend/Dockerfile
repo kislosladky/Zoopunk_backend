@@ -3,7 +3,7 @@ FROM gradle:jdk17 AS compile-image
 WORKDIR /app
 COPY . /app
 
-RUN gradle build -x test
+RUN gradle build --no-daemon -x test
 
 FROM arm32v7/eclipse-temurin:17-jre AS runtime-image
 
