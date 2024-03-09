@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "33334:8080"
+      - "80:8080"
     depends_on:
       postgres_db:
         condition: service_healthy
