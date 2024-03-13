@@ -28,7 +28,7 @@ public class AnimalController {
 
         if (!response.isEmpty()) {
             AnimalList animalList = new AnimalList();
-            animalList.setNames(response);
+//            animalList.setNames(response);
             return ResponseEntity.ok(animalList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,6 +53,4 @@ public class AnimalController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
 }
