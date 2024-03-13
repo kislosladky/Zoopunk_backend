@@ -11,8 +11,9 @@ import java.util.UUID;
 public class Quiz {
     public Quiz() {}
 
-    public Quiz(UUID id, String quizContent) {
+    public Quiz(UUID id, UUID achievementsId, String quizContent) {
         this.id = id;
+        this.achievementsId = achievementsId;
         this.quizContent = quizContent;
     }
 
@@ -20,6 +21,9 @@ public class Quiz {
     @Column(name="id")
     @Id
     private UUID id;
+
+    @Column(name="achievementsid")
+    private UUID achievementsId;
 
     @Column(name="quizcontent", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")
@@ -39,5 +43,13 @@ public class Quiz {
 
     public void setQuizContent(String quizContent) {
         this.quizContent = quizContent;
+    }
+
+    public UUID getAchievementsId() {
+        return achievementsId;
+    }
+
+    public void setAchievementsId(UUID achievementsId) {
+        this.achievementsId = achievementsId;
     }
 }
