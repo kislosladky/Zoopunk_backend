@@ -3,6 +3,7 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Entity.Animal;
 import zoopunk.backend.EntityList.AnimalList;
+import zoopunk.backend.EntityList.Coordinates;
 import zoopunk.backend.Service.AnimalService;
 
 import java.util.List;
@@ -39,6 +41,17 @@ public class AnimalController {
     public ResponseEntity<Animal> getAnimalsById(@RequestParam UUID id) {
         Optional<Animal> response = animalService.getAnimalById(id);
         return ResponseEntity.of(response);
+    }
+
+    @GetMapping("/coordinatesById")
+    public ResponseEntity<Coordinates> getCoordinatesById(@RequestParam UUID id) {
+        Optional<Animal> response = animalService.getAnimalById(id);
+        if (response.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            Coordinates coordinates = new Coordinates(response.get().getLatitude(), response.get().getLongitude());
+            return ResponseEntity.ok(coordinates);
+        }
     }
 
     @GetMapping("/all")
