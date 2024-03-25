@@ -11,3 +11,8 @@ databaseChangeLog:
 #      file: db/changelog/db.changelog-fill-in-animals-and-user.sql
   - include:
       file: db/changelog/db.changelog-fill-in-animals-with-descriptions.sql
+  - include:
+      file: db/changelog/db.changelog-achievement-first.sql
+  - include:
+      file: db/changelog/db.changelog-adding-animal-coordinates.sql
+

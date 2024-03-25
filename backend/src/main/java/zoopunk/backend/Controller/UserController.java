@@ -24,6 +24,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
     public ResponseEntity<User> getUserById(@RequestParam UUID id) {
         Optional<User> response = userRepository.findById(id);
@@ -44,7 +45,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-        User savedUser = userRepository.save(user);
+        User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
+
+        User savedUser = userRepository.save(newUser);
 
         URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();

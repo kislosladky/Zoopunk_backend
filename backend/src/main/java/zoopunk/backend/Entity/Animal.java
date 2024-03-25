@@ -19,7 +19,9 @@ public class Animal {
                   String species,
                   String description,
                   String imgpath,
-                  String background)
+                  String background,
+                  float latitude,
+                  float longitude)
     {
         this.id = id;
         this.species = species;
@@ -29,6 +31,8 @@ public class Animal {
         this.background = background;
         this.imgpath = imgpath;
         this.family = family;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
 
@@ -58,6 +62,28 @@ public class Animal {
 
     @Column(name="background")
     private String background;
+
+    @Column(name="latitude")
+    private float latitude;
+
+    @Column(name="longitude")
+    private float longitude;
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
 
     public String getAnimalclass() {
         return animalclass;

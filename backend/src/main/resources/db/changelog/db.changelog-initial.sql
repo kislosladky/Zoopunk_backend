@@ -1,4 +1,5 @@
 --changeset me:id1
+
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -17,6 +18,7 @@ CREATE TABLE quizprogress (
         quizid          UUID,
         quizresult      INTEGER
 );
+
 
 DROP TABLE IF EXISTS animals;
 
