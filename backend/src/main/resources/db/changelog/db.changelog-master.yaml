@@ -11,3 +11,5 @@ databaseChangeLog:
 #      file: db/changelog/db.changelog-fill-in-animals-and-user.sql
   - include:
       file: db/changelog/db.changelog-fill-in-animals-with-descriptions.sql
+  - inlcude:
+      file: db/changelog/db.changelog-achievement-first.sql

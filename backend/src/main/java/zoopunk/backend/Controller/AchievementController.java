@@ -30,5 +30,4 @@ public class AchievementController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

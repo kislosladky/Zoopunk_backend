@@ -1,5 +1,6 @@
 package zoopunk.backend.Controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
     public ResponseEntity<User> getUserById(@RequestParam UUID id) {
         Optional<User> response = userRepository.findById(id);
@@ -44,13 +46,16 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-        User savedUser = userRepository.save(user);
 
+        User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
+
+        User savedUser = userRepository.save(newUser);
         URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
+    //TODO Сделать так, чтобы юзер мог обновлять только себя
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
         userRepository.save(updatedUser);
