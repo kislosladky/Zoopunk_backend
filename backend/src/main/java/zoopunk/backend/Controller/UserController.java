@@ -45,16 +45,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-
         User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
 
         User savedUser = userRepository.save(newUser);
+
         URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
-    //TODO Сделать так, чтобы юзер мог обновлять только себя
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
         userRepository.save(updatedUser);
