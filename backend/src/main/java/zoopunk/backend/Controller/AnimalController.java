@@ -3,10 +3,8 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zoopunk.backend.Entity.Animal;
@@ -49,7 +47,8 @@ public class AnimalController {
         if (response.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
-            Coordinates coordinates = new Coordinates(response.get().getLatitude(), response.get().getLongitude());
+            Coordinates coordinates = new Coordinates();
+            coordinates.setCoordinates(response.get().getLatitude(), response.get().getLongitude());
             return ResponseEntity.ok(coordinates);
         }
     }
