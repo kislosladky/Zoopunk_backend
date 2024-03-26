@@ -1,6 +1,6 @@
 ALTER TABLE animals
-ADD longitude REAL;
-ADD latitude REAL;
+    ADD longitude REAL,
+    ADD latitude REAL;
 
 INSERT INTO animals (id, name, animalclass, family, species, description, imgpath, background, latitude, longitude)
  VALUES ('85557a87-6908-41af-ad16-e8f959871c54',
