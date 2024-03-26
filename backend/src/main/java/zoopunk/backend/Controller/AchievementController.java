@@ -5,9 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zoopunk.backend.Entity.Achievement;
+import zoopunk.backend.Entity.AchievementProgress;
 import zoopunk.backend.EntityList.AchievementList;
+import zoopunk.backend.Repository.AchievementProgressRepository;
 import zoopunk.backend.Service.AchievementService;
 
 import java.util.List;
@@ -17,6 +21,9 @@ import java.util.List;
 public class AchievementController {
     @Autowired
     AchievementService achievementService;
+
+    @Autowired
+    AchievementProgressRepository achievementProgressRepository;
 
     @GetMapping("/all")
     public ResponseEntity<AchievementList> getAllAchievements() {
@@ -29,5 +36,12 @@ public class AchievementController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Void> saveAchievement(@RequestBody AchievementProgress achievementResult) {
+        achievementProgressRepository.save(achievementResult);
+
+        return ResponseEntity.noContent().build();
     }
 }
