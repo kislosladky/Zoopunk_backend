@@ -3,8 +3,8 @@ databaseChangeLog:
       file: db/changelog/db.changelog-initial.sql
   - include:
       file: db/changelog/db.changelog-infofortests.sql
-  - include:
-      file: db/changelog/db.changelog-achievement-test-info.sql
+#  - include:
+#      file: db/changelog/db.changelog-achievement-test-info.sql
   - include:
       file: db/changelog/db.changelog-achievementprogress.sql
 #  - include:
