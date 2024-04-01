@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import java.util.Objects;
 import java.util.UUID;
 
+
 @Entity(name="users")
 public class User {
     public User() {}
