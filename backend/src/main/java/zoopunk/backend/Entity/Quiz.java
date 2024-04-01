@@ -32,7 +32,7 @@ public class Quiz {
     private String name;
 
 
-    @Column(name="image")
+    @Column(name="img")
     private String img;
 
     @Column(name="description")
