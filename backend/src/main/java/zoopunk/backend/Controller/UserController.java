@@ -45,7 +45,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-        User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
+        User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getUsername(), user.getAge(), user.getImage());
 
         User savedUser = userRepository.save(newUser);
 

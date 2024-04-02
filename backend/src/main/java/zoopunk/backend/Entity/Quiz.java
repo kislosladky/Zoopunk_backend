@@ -3,22 +3,28 @@ package zoopunk.backend.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
+@Getter
+@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="quizzes")
 public class Quiz {
-    public Quiz() {}
+//    public Quiz() {}
 
-    public Quiz(UUID id, UUID achievementsId, String name, String img, String description, String quizContent) {
-        this.id = id;
-        this.achievementsId = achievementsId;
-        this.name = name;
-        this.img = img;
-        this.description = description;
-        this.quizContent = quizContent;
-    }
+//    public Quiz(UUID id, UUID achievementsId, String name, String img, String description, String quizContent) {
+//        this.id = id;
+//        this.achievementsId = achievementsId;
+//        this.name = name;
+//        this.img = img;
+//        this.description = description;
+//        this.quizContent = quizContent;
+//    }
 
 
     @Column(name="id")

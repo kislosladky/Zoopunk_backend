@@ -23,4 +23,6 @@ databaseChangeLog:
       file: db/changelog/db.changelog-quiz-fix.sql
   - include:
       file: db/changelog/db.changelog-more-animal-coordinates.sql
+  - include:
+      file: db/changelog/db.changelog-authorization.sql
 
