@@ -1,31 +1,22 @@
 package zoopunk.backend.EntityList;
 
 import zoopunk.backend.Entity.Quiz;
+import zoopunk.backend.dto.QuizWithoutContent;
 
 import java.util.List;
 
 public class QuizList {
-    private List<String> quizNames;
-    private List<Quiz> quizzes;
+    private List<QuizWithoutContent> quizzes;
 
-    public List<Quiz> getQuizzes() {
+    public List<QuizWithoutContent> getQuizzes() {
         return quizzes;
     }
 
-    public void setQuizzes(List<Quiz> quizzes) {
+    public void setQuizzes(List<QuizWithoutContent> quizzes) {
         this.quizzes = quizzes;
     }
 
     public QuizList() {
-        this.quizNames = null;
         this.quizzes = null;
-    }
-
-    public List<String> getQuizNames() {
-        return quizNames;
-    }
-
-    public void setQuizNames(List<String> quizNames) {
-        this.quizNames = quizNames;
     }
 }

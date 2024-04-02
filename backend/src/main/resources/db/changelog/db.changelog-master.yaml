@@ -15,6 +15,12 @@ databaseChangeLog:
       file: db/changelog/db.changelog-achievement-first.sql
   - include:
       file: db/changelog/db.changelog-adding-animal-coordinates.sql
+#  - include:
+#      file: db/changelog/db.changelog-fill-quizzes.sql
+#  - include:
+#      file: db/changelog/db.changelog.quiz-edit.sql
   - include:
-      file: db/changelog/db.changelog-fill-quizzes.sql
+      file: db/changelog/db.changelog-quiz-fix.sql
+  - include:
+      file: db/changelog/db.changelog-more-animal-coordinates.sql
 
