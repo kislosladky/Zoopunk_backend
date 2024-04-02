@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import zoopunk.backend.Entity.Achievement;
 import zoopunk.backend.Entity.AchievementProgress;
 import zoopunk.backend.EntityList.AchievementList;
 import zoopunk.backend.Repository.AchievementProgressRepository;
 import zoopunk.backend.Service.AchievementService;
+import zoopunk.backend.dto.AchievementsDto;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/achievement")
@@ -26,13 +25,13 @@ public class AchievementController {
     AchievementProgressRepository achievementProgressRepository;
 
     @GetMapping("/all")
-    public ResponseEntity<AchievementList> getAllAchievements() {
-        List<Achievement> response = achievementService.getAllAchievements();
+    public ResponseEntity<AchievementList> getAllAchievementsForUser(@RequestParam UUID id) {
+        List<AchievementsDto> dtoList = achievementService.getAllAchievements(id);
 
-        if (!response.isEmpty()) {
-            AchievementList achievements = new AchievementList();
-            achievements.setAchievements(response);
-            return ResponseEntity.ok(achievements);
+        if (!dtoList.isEmpty()) {
+            AchievementList achievementList = new AchievementList(dtoList);
+
+            return ResponseEntity.ok(achievementList);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -44,4 +43,5 @@ public class AchievementController {
 
         return ResponseEntity.noContent().build();
     }
+
 }
