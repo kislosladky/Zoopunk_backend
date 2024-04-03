@@ -28,8 +28,6 @@ public class User implements UserDetails {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-
-    //TODO добавить в бд поле(enum?)
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
