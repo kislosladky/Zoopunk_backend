@@ -3,13 +3,15 @@ package zoopunk.backend.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.*;
 
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity(name="achievements")
 public class Achievement {
-
-    public Achievement() {}
 
     @Column(name="id")
     @Id
@@ -23,37 +25,4 @@ public class Achievement {
 
     @Column(name="pointsfordone")
     private int pointsfordone;
-
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPointsfordone() {
-        return pointsfordone;
-    }
-
-    public void setPointsfordone(int pointsfordone) {
-        this.pointsfordone = pointsfordone;
-    }
 }
