@@ -11,8 +11,7 @@ import zoopunk.backend.EntityList.AchievementList;
 
 import java.util.List;
 
-import zoopunk.backend.Entity.Achievement;
-import zoopunk.backend.dto.AchievementsDto;
+import zoopunk.backend.dto.AchievementDto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +28,7 @@ public class AchievementTests {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
-        List<AchievementsDto> achievements = response.getBody().getAchievements();
+        List<AchievementDto> achievements = response.getBody().getAchievements();
         assertEquals(2, achievements.size());
     }
 }

@@ -5,12 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import zoopunk.backend.Entity.Achievement;
 import zoopunk.backend.Entity.AchievementProgress;
 import zoopunk.backend.EntityList.AchievementList;
 import zoopunk.backend.Repository.AchievementProgressRepository;
 import zoopunk.backend.Service.AchievementService;
-import zoopunk.backend.dto.AchievementsDto;
+import zoopunk.backend.dto.AchievementDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,7 +25,7 @@ public class AchievementController {
 
     @GetMapping("/all")
     public ResponseEntity<AchievementList> getAllAchievementsForUser(@RequestParam UUID id) {
-        List<AchievementsDto> dtoList = achievementService.getAllAchievements(id);
+        List<AchievementDto> dtoList = achievementService.getAllAchievements(id);
 
         if (!dtoList.isEmpty()) {
             AchievementList achievementList = new AchievementList(dtoList);
