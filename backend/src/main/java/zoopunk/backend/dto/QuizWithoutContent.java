@@ -11,7 +11,8 @@ public class QuizWithoutContent {
     public QuizWithoutContent(UUID id,
                               String name,
                               String description,
-                              String img) {
+                              String img)
+    {
         this.id = id;
         this.description = description;
         this.img = img;

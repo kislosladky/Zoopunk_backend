@@ -15,6 +15,9 @@ public class AchievementProgress {
     @Column(name="id")
     private UUID id;
 
+    @Column(name="currentpoints")
+    private int currentPoints;
+
     public AchievementProgress(UUID userid, UUID id) {
         this.userid = userid;
         this.id = id;
@@ -36,5 +39,13 @@ public class AchievementProgress {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public int getCurrentPoints() {
+        return currentPoints;
+    }
+
+    public void setCurrentPoints(int currentPoints) {
+        this.currentPoints = currentPoints;
     }
 }
