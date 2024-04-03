@@ -1,17 +1,21 @@
 package zoopunk.backend.EntityList;
 
-import zoopunk.backend.Entity.Achievement;
+import zoopunk.backend.dto.AchievementDto;
 
 import java.util.List;
 
 public class AchievementList {
-    private List<Achievement> achievements;
+    private List<AchievementDto> achievements;
 
-    public List<Achievement> getAchievements() {
+    public AchievementList(List<AchievementDto> achievements) {
+        this.achievements = achievements;
+    }
+
+    public List<AchievementDto> getAchievements() {
         return achievements;
     }
 
-    public void setAchievements(List<Achievement> achievements) {
+    public void setAchievements(List<AchievementDto> achievements) {
         this.achievements = achievements;
     }
 }

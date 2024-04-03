@@ -20,4 +20,8 @@ public class AchievementProgress {
 
     @Column(name="id")
     private UUID id;
+
+    @Column(name="currentpoints")
+    private int currentPoints;
+
 }

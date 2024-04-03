@@ -1,28 +1,32 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/db.changelog-initial.sql
+      file: db/changelog/db.changelog.1-initial.sql
   - include:
-      file: db/changelog/db.changelog-infofortests.sql
+      file: db/changelog/db.changelog.2-infofortests.sql
 #  - include:
-#      file: db/changelog/db.changelog-achievement-test-info.sql
+#      file: db/changelog/db.changelog.3-achievement-test-info.sql
   - include:
-      file: db/changelog/db.changelog-achievementprogress.sql
+      file: db/changelog/db.changelog.4-achievementprogress.sql
 #  - include:
-#      file: db/changelog/db.changelog-fill-in-animals-and-user.sql
+#      file: db/changelog/db.changelog.5-fill-in-animals-and-user.sql
   - include:
-      file: db/changelog/db.changelog-fill-in-animals-with-descriptions.sql
+      file: db/changelog/db.changelog.6-fill-in-animals-with-descriptions.sql
   - include:
-      file: db/changelog/db.changelog-achievement-first.sql
+      file: db/changelog/db.changelog.7-achievement-first.sql
   - include:
-      file: db/changelog/db.changelog-adding-animal-coordinates.sql
+      file: db/changelog/db.changelog.8-adding-animal-coordinates.sql
 #  - include:
-#      file: db/changelog/db.changelog-fill-quizzes.sql
+#      file: db/changelog/db.changelog.9-fill-quizzes.sql
 #  - include:
-#      file: db/changelog/db.changelog.quiz-edit.sql
+#      file: db/changelog/db.changelog.10-quiz-edit.sql
   - include:
-      file: db/changelog/db.changelog-quiz-fix.sql
+      file: db/changelog/db.changelog.11-quiz-fix.sql
   - include:
-      file: db/changelog/db.changelog-more-animal-coordinates.sql
+      file: db/changelog/db.changelog.12-more-animal-coordinates.sql
   - include:
-      file: db/changelog/db.changelog-authorization.sql
+      file: db/changelog/db.changelog.13-add-curPoints-achievements.sql
+  - include:
+      file: db/changelog/db.changelog.14-more-animal-coordinates.sql
+  - include:
+      file: db/changelog/db.changelog.15-authorization.sql
 

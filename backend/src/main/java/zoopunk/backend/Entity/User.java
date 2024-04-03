@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-@Data
 
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
