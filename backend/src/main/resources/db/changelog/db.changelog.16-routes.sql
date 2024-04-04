@@ -2,7 +2,7 @@ CREATE TABLE routes (
     id              UUID PRIMARY KEY NOT NULL,
     name            TEXT,
     description     TEXT,
-    waypoints       JSON
+    waypoints       TEXT
 );
 
 INSERT INTO routes (id, name, description, waypoints)
