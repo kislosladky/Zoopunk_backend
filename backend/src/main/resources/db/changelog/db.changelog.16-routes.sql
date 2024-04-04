@@ -1,7 +1,7 @@
 CREATE TABLE routes (
     id              UUID PRIMARY KEY NOT NULL,
     name            TEXT,
-    description     TEXT
+    description     TEXT,
     waypoints       JSON
 );
 
