@@ -25,3 +25,5 @@ databaseChangeLog:
       file: db/changelog/db.changelog.12-more-animal-coordinates.sql
   - include:
       file: db/changelog/db.changelog.13-add-curPoints-achievements.sql
+  - include:
+      file: db/changelog/db.changelog.16-routes.sql
