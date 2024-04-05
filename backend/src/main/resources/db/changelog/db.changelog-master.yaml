@@ -26,4 +26,4 @@ databaseChangeLog:
   - include:
       file: db/changelog/db.changelog.13-add-curPoints-achievements.sql
   - include:
-      file: db/changelog/db.changelog.16-routes.sql
+      file: db/changelog/db.changelog.14-routes.sql
