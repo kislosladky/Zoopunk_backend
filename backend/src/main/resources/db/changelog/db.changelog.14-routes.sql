@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS routes;
 CREATE TABLE routes (
     id              UUID PRIMARY KEY NOT NULL,
     name            TEXT,
