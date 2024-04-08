@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import zoopunk.backend.EntityList.UserList;
-import zoopunk.backend.Repository.UserRepository;
 import zoopunk.backend.Service.UserService;
 import zoopunk.backend.Entity.User;
 
@@ -21,19 +20,17 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     UserService userService;
-    @Autowired
-    UserRepository userRepository;
 
     //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
     public ResponseEntity<User> getUserById(@RequestParam UUID id) {
-        Optional<User> response = userRepository.findById(id);
+        Optional<User> response = userService.findById(id);
         return ResponseEntity.of(response);
     }
 
     @GetMapping("/ageBetween")
     public ResponseEntity<UserList> getUsersWithAgeBetween(@RequestParam Integer lowerAge, @RequestParam Integer upperAge) {
-        List<User> response = userRepository.findByAgeBetween(lowerAge, upperAge);
+        List<User> response = userService.findByAgeBetween(lowerAge, upperAge);
         if (!response.isEmpty()) {
             UserList userList = new UserList();
             userList.setUserList(response);
@@ -47,7 +44,7 @@ public class UserController {
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
         User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
 
-        User savedUser = userRepository.save(newUser);
+        User savedUser = userService.save(newUser);
 
         URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();
@@ -56,7 +53,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
-        userRepository.save(updatedUser);
+        userService.save(updatedUser);
 
         return ResponseEntity.noContent().build();
     }

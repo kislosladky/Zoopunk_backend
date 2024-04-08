@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import zoopunk.backend.Entity.AchievementProgress;
 import zoopunk.backend.EntityList.AchievementList;
-import zoopunk.backend.Repository.AchievementProgressRepository;
 import zoopunk.backend.Service.AchievementService;
 import zoopunk.backend.dto.AchievementDto;
 
@@ -19,9 +18,6 @@ import java.util.UUID;
 public class AchievementController {
     @Autowired
     AchievementService achievementService;
-
-    @Autowired
-    AchievementProgressRepository achievementProgressRepository;
 
     @GetMapping("/all")
     public ResponseEntity<AchievementList> getAllAchievementsForUser(@RequestParam UUID id) {
@@ -38,7 +34,7 @@ public class AchievementController {
 
     @PostMapping("/save")
     public ResponseEntity<Void> saveAchievement(@RequestBody AchievementProgress achievementResult) {
-        achievementProgressRepository.save(achievementResult);
+        achievementService.save(achievementResult);
 
         return ResponseEntity.noContent().build();
     }

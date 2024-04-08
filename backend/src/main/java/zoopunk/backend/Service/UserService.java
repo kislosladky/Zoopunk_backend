@@ -16,17 +16,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    @Transactional
-    public void execute() {
-        userRepo.findAllById(Collections.emptyList());
-        userRepo.customSelect();
-    }
-
     public Optional<User> findById(UUID id) {
         return userRepo.findById(id);
     }
 
     public List<User> findByAgeBetween(Integer lowerBound, Integer upperBound) {
         return userRepo.findByAgeBetween(lowerBound,upperBound);
+    }
+
+    public User save(User user) {
+        return userRepo.save(user);
     }
 }
