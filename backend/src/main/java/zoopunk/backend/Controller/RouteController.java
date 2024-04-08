@@ -25,8 +25,13 @@ public class RouteController {
     }
 
     @GetMapping("/byId")
-    public ResponseEntity<Route> getRouteById(@RequestParam UUID id) {
+    public ResponseEntity<String> getRouteById(@RequestParam UUID id) {
         Optional<Route> response = routeService.findById(id);
-        return ResponseEntity.of(response);
+
+        if (response.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(response.get().getWaypoints());
+        }
     }
 }
