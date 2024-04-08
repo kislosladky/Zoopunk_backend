@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ public class Route {
     @Column(name="description")
     private String description;
 
-    @Column(name="waypoints")
+    @Column(name="waypoints", columnDefinition = "json")
+    @ColumnTransformer(write = "?::jsonb")
     private String waypoints;
 }
