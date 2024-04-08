@@ -27,9 +27,11 @@ public class RouteService {
                     .description(route.getDescription())
                     .build());
         }
+
         if (result.isEmpty()) {
             return Optional.empty();
         }
+
         return Optional.of(new RouteList(result));
     }
 
