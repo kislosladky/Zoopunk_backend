@@ -18,18 +18,20 @@ import java.util.UUID;
 public class QuizProgressService {
     @Autowired
     QuizProgressRepository quizProgressRepository;
+
     @Autowired
     AchievementRepository achievementRepository;
+
     @Autowired
     AchievementProgressRepository achievementProgressRepository;
+
     @Autowired
     QuizRepository quizRepository;
 
     public void saveProgressAndGetAchievement(QuizProgress quizProgress) {
-
         quizProgressRepository.save(quizProgress);
 
-        Optional<Quiz> quiz= quizRepository.findById(quizProgress.getQuizid());
+        Optional<Quiz> quiz = quizRepository.findById(quizProgress.getQuizid());
 
         if (quiz.isEmpty()) {
             return;

@@ -45,4 +45,8 @@ public class AchievementService {
 
         return dtoList;
     }
+
+    public AchievementProgress save(AchievementProgress result) {
+        return achievementProgressRepo.save(result);
+    }
 }
