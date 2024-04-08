@@ -33,6 +33,5 @@ public class RouteController {
         } else {
             return ResponseEntity.ok(response.get().getWaypoints());
         }
-
     }
 }
