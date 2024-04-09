@@ -3,6 +3,7 @@ package zoopunk.backend.Service;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,9 @@ import java.util.function.Function;
 import java.util.HashMap;
 import java.util.Map;
 
+@RequiredArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Service
 public class JwtService {
     @Value("${token.signing.key}")

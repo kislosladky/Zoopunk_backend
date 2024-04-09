@@ -60,13 +60,13 @@ public class AuthenticationService {
         return new JwtAuthenticationResponse(jwt);
     }
 
-    public AuthenticationService(UserService userService,
-                                 JwtService jwtService,
-                                 PasswordEncoder passwordEncoder,
-                                 AuthenticationManager authenticationManager) {
-        this.userService = userService;
-        this.jwtService = jwtService;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-    }
+//    public AuthenticationService(UserService userService,
+//                                 JwtService jwtService,
+//                                 PasswordEncoder passwordEncoder,
+//                                 AuthenticationManager authenticationManager) {
+//        this.userService = userService;
+//        this.jwtService = jwtService;
+//        this.passwordEncoder = passwordEncoder;
+//        this.authenticationManager = authenticationManager;
+//    }
 }
