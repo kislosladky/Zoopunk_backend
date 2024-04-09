@@ -4,38 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
+@AllArgsConstructor
+@Data
 @Entity(name="animals")
 public class Animal {
-    public Animal() {}
-
-    public Animal(UUID id,
-                  String name,
-                  String animalclass,
-                  String family,
-                  String species,
-                  String description,
-                  String imgpath,
-                  String background,
-                  Float latitude,
-                  Float longitude)
-    {
-        this.id = id;
-        this.species = species;
-        this.name = name;
-        this.description = description;
-        this.animalclass = animalclass;
-        this.background = background;
-        this.imgpath = imgpath;
-        this.family = family;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-
     @Column(name="id")
     @Id
     private UUID id;
@@ -68,84 +46,4 @@ public class Animal {
 
     @Column(name="longitude")
     private Float longitude;
-
-    public Float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
-
-    public Float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getAnimalclass() {
-        return animalclass;
-    }
-
-    public void setAnimalclass(String animalclass) {
-        this.animalclass = animalclass;
-    }
-
-    public String getFamily() {
-        return family;
-    }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public String getImgpath() {
-        return imgpath;
-    }
-
-    public void setImgpath(String imgpath) {
-        this.imgpath = imgpath;
-    }
-
-    public String getBackground() {
-        return background;
-    }
-
-    public void setBackground(String background) {
-        this.background = background;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
