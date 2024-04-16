@@ -11,6 +11,9 @@ import zoopunk.backend.dto.JwtAuthenticationResponse;
 import zoopunk.backend.dto.SignInRequest;
 import zoopunk.backend.dto.SignUpRequest;
 import zoopunk.backend.Entity.User;
+
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -28,10 +31,15 @@ public class AuthenticationService {
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
         var user = User.builder()
+                .id(UUID.randomUUID())
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ROLE_USER)
+                .firstname("request.getFirstname()")
+                .lastname("request.getLastname()")
+                .age(15)
+                .image("sbsbns")
                 .build();
 
         userService.create(user);

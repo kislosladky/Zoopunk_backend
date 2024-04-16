@@ -3,9 +3,15 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import zoopunk.backend.Entity.AchievementProgress;
+import zoopunk.backend.Entity.User;
 import zoopunk.backend.EntityList.AchievementList;
 import zoopunk.backend.Repository.AchievementProgressRepository;
 import zoopunk.backend.Service.AchievementService;
@@ -24,8 +30,10 @@ public class AchievementController {
     AchievementProgressRepository achievementProgressRepository;
 
     @GetMapping("/all")
-    public ResponseEntity<AchievementList> getAllAchievementsForUser(@RequestParam UUID id) {
-        List<AchievementDto> dtoList = achievementService.getAllAchievements(id);
+//    public ResponseEntity<AchievementList> getAllAchievementsForUser(@CurrentSecurityContext(expression = "authentication.id") UUID userid) {
+    public ResponseEntity<AchievementList> getAllAchievementsForUser() {
+        UUID userid = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        List<AchievementDto> dtoList = achievementService.getAllAchievements(userid);
 
         if (!dtoList.isEmpty()) {
             AchievementList achievementList = new AchievementList(dtoList);

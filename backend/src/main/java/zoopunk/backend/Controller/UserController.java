@@ -49,8 +49,8 @@ public class UserController {
                 user.getPassword(),
                 user.getEmail(),
                 user.getRole(),
-                user.getFirstName(),
-                user.getLastName(),
+                user.getFirstname(),
+                user.getLastname(),
                 user.getUsername(),
                 user.getAge(),
                 user.getImage());

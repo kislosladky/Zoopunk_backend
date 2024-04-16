@@ -20,6 +20,7 @@ public class User implements UserDetails {
 
     @Column(name="id", unique = true, nullable = false)
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @Column(name = "password", nullable = false)
@@ -34,10 +35,11 @@ public class User implements UserDetails {
 
 
     @Column(name="firstname")
-    private String firstName;
+    private String firstname;
 
+    //TODO remove
     @Column(name="lastname")
-    private String lastName;
+    private String lastname;
 
     @Column(name="username")
     private String username;

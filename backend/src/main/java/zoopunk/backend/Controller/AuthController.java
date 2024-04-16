@@ -2,6 +2,8 @@ package zoopunk.backend.Controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,18 +17,19 @@ import zoopunk.backend.dto.SignUpRequest;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private AuthenticationService authenticationService;
+    @Autowired
+    AuthenticationService authenticationService;
 
 
 //    @Operation(summary = "Регистрация пользователя")
     @PostMapping("/sign-up")
-    public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request) {
-        return authenticationService.signUp(request);
+    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody @Valid SignUpRequest request) {
+        return ResponseEntity.ok(authenticationService.signUp(request));
     }
 
 //    @Operation(summary = "Авторизация пользователя")
     @PostMapping("/sign-in")
-    public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request) {
-        return authenticationService.signIn(request);
+    public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody @Valid SignInRequest request) {
+        return ResponseEntity.ok(authenticationService.signIn(request));
     }
 }
