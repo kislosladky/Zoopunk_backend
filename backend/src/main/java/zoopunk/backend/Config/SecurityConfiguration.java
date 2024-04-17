@@ -51,8 +51,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(request -> request
                     .requestMatchers("/auth/**").permitAll()
                     // Можно указать конкретный путь, * - 1 уровень вложенности, ** - любое количество уровней вложенности
-                    .anyRequest().hasRole("USER"))
-//                    .anyRequest().permitAll())
+                    .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

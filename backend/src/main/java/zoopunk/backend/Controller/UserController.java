@@ -3,6 +3,7 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -26,21 +27,10 @@ public class UserController {
 
     //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
-    public ResponseEntity<User> getUserById(@RequestParam UUID id) {
+    public ResponseEntity<User> getUserById() {
+        UUID id = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> response = userRepository.findById(id);
         return ResponseEntity.of(response);
-    }
-
-    @GetMapping("/ageBetween")
-    public ResponseEntity<UserList> getUsersWithAgeBetween(@RequestParam Integer lowerAge, @RequestParam Integer upperAge) {
-        List<User> response = userRepository.findByAgeBetween(lowerAge, upperAge);
-        if (!response.isEmpty()) {
-            UserList userList = new UserList();
-            userList.setUserList(response);
-            return ResponseEntity.ok(userList);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @PostMapping
@@ -50,9 +40,7 @@ public class UserController {
                 user.getEmail(),
                 user.getRole(),
                 user.getFirstname(),
-                user.getLastname(),
                 user.getUsername(),
-                user.getAge(),
                 user.getImage());
 
         User savedUser = userRepository.save(newUser);

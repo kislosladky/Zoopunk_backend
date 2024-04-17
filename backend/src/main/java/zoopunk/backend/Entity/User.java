@@ -37,15 +37,14 @@ public class User implements UserDetails {
     @Column(name="firstname")
     private String firstname;
 
-    //TODO remove
-    @Column(name="lastname")
-    private String lastname;
+//    @Column(name="lastname")
+//    private String lastname;
 
     @Column(name="username")
     private String username;
 
-    @Column(name="age")
-    private int age;
+//    @Column(name="age")
+//    private int age;
 
     @Column(name="image")
     private String image;

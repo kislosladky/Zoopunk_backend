@@ -30,7 +30,6 @@ public class AchievementController {
     AchievementProgressRepository achievementProgressRepository;
 
     @GetMapping("/all")
-//    public ResponseEntity<AchievementList> getAllAchievementsForUser(@CurrentSecurityContext(expression = "authentication.id") UUID userid) {
     public ResponseEntity<AchievementList> getAllAchievementsForUser() {
         UUID userid = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         List<AchievementDto> dtoList = achievementService.getAllAchievements(userid);

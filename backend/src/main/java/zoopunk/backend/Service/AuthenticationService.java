@@ -36,10 +36,8 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ROLE_USER)
-                .firstname("request.getFirstname()")
-                .lastname("request.getLastname()")
-                .age(15)
-                .image("sbsbns")
+                .firstname(request.getFirstname())
+                .image(request.getImage())
                 .build();
 
         userService.create(user);

@@ -27,10 +27,6 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<User> findByAgeBetween(Integer lowerBound, Integer upperBound) {
-        return userRepository.findByAgeBetween(lowerBound,upperBound);
-    }
-
     /**
      * Сохранение пользователя
      *
