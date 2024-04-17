@@ -10,11 +10,10 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity(name="achievements")
 public class Achievement {
-
-    public Achievement() {}
 
     @Column(name="id")
     @Id

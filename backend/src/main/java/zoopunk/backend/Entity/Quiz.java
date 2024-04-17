@@ -5,11 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity(name="quizzes")
 public class Quiz {
@@ -22,7 +24,6 @@ public class Quiz {
 
     @Column(name="name")
     private String name;
-
 
     @Column(name="img")
     private String img;

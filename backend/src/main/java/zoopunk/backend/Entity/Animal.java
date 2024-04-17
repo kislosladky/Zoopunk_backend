@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
@@ -29,7 +30,6 @@ public class Animal {
 
     @Column(name="species")
     private String species;
-
 
     @Column(name="description", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")
