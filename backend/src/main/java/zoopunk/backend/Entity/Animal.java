@@ -12,6 +12,7 @@ import org.hibernate.annotations.ColumnTransformer;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity(name="animals")
 public class Animal {
