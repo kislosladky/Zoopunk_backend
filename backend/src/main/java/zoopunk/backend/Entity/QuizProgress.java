@@ -3,22 +3,15 @@ package zoopunk.backend.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.UUID;
 
+@AllArgsConstructor
+@Data
 @Entity(name="quizprogress")
 public class QuizProgress {
-    public QuizProgress() {}
-
-    public QuizProgress(UUID userid,
-                        UUID quizid,
-                        int quizResult)
-    {
-        this.userid = userid;
-        this.quizid = quizid;
-        this.quizResult = quizResult;
-    }
-
     @Column(name="userid")
     @Id
     private UUID userid;
@@ -28,28 +21,4 @@ public class QuizProgress {
 
     @Column(name="quizresult")
     private int quizResult;
-
-    public UUID getUserid() {
-        return userid;
-    }
-
-    public void setUserid(UUID userid) {
-        this.userid = userid;
-    }
-
-    public UUID getQuizid() {
-        return quizid;
-    }
-
-    public void setQuizid(UUID quizid) {
-        this.quizid = quizid;
-    }
-
-    public int getQuizResult() {
-        return quizResult;
-    }
-
-    public void setQuizResult(int quizResult) {
-        this.quizResult = quizResult;
-    }
 }

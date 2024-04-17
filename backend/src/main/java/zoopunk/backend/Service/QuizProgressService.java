@@ -51,7 +51,9 @@ public class QuizProgressService {
 
         if (quizProgress.getQuizResult() >= achievement.getPointsfordone()) {
             AchievementProgress progress =
-                    new AchievementProgress(quizProgress.getUserid(), achievementId);
+                    new AchievementProgress(quizProgress.getUserid(),
+                            achievementId,
+                            achievement.getPointsfordone());
             achievementProgressRepository.save(progress);
         }
     }
