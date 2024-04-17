@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
+
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity(name="quizprogress")
 public class QuizProgress {
-
     @Column(name="userid")
     @Id
     private UUID userid;

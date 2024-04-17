@@ -1,17 +1,20 @@
 package zoopunk.backend.dto;
 
-import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class QuizWithoutContent {
+public class RouteDescription {
     private UUID id;
+
     private String name;
+
     private String description;
-    private String img;
 }

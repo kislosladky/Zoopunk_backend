@@ -22,7 +22,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     public Optional<User> findById(UUID id) {
         return userRepository.findById(id);
     }

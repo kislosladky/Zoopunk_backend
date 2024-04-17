@@ -43,9 +43,11 @@ public class QuizController {
         if (!response.isEmpty()) {
             QuizList quizList = new QuizList();
             List<QuizWithoutContent> result = new ArrayList<>();
+
             for (Quiz quiz : response) {
                 result.add(new QuizWithoutContent(quiz.getId(), quiz.getName(), quiz.getDescription(), quiz.getImg()));
             }
+
             quizList.setQuizzes(result);
             return ResponseEntity.ok(quizList);
         } else {

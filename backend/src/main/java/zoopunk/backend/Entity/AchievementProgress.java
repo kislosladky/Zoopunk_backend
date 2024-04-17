@@ -23,5 +23,4 @@ public class AchievementProgress {
 
     @Column(name="currentpoints")
     private int currentPoints;
-
 }

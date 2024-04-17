@@ -36,6 +36,8 @@ services:
         condition: service_healthy
     networks:
       - server_net
+    volumes:
+      - /etc/letsencrypt/live/zoo.fitnsustudent.tech/keystore.p12:/etc/letsencrypt/live/zoo.fitnsustudent.tech/keystore.p12
 
 networks:
   server_net:

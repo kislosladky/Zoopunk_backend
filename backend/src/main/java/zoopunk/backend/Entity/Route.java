@@ -9,29 +9,22 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnTransformer;
 import java.util.UUID;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name="quizzes")
-public class Quiz {
-    @Column(name="id")
+@Entity(name="routes")
+public class Route {
     @Id
+    @Column(name="id")
     private UUID id;
-
-    @Column(name="achievementsid")
-    private UUID achievementsId;
 
     @Column(name="name")
     private String name;
 
-    @Column(name="img")
-    private String img;
-
     @Column(name="description")
     private String description;
 
-    @Column(name="quizcontent", columnDefinition = "json")
+    @Column(name="waypoints", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")
-    private String quizContent;
+    private String waypoints;
 }

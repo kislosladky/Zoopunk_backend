@@ -1,6 +1,5 @@
 package zoopunk.backend.Entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,7 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity(name="animals")
 public class Animal {
-
     @Column(name="id")
     @Id
     private UUID id;
@@ -32,7 +30,6 @@ public class Animal {
 
     @Column(name="species")
     private String species;
-
 
     @Column(name="description", columnDefinition = "json")
     @ColumnTransformer(write = "?::jsonb")

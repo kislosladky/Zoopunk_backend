@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import zoopunk.backend.EntityList.UserList;
-import zoopunk.backend.Repository.UserRepository;
 import zoopunk.backend.Service.UserService;
 import zoopunk.backend.Entity.User;
 
@@ -22,14 +21,11 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     UserService userService;
-    @Autowired
-    UserRepository userRepository;
 
-    //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
     public ResponseEntity<User> getUserById() {
         UUID id = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        Optional<User> response = userRepository.findById(id);
+        Optional<User> response = userService.findById(id);
         return ResponseEntity.of(response);
     }
 
@@ -43,7 +39,7 @@ public class UserController {
                 user.getUsername(),
                 user.getImage());
 
-        User savedUser = userRepository.save(newUser);
+        User savedUser = userService.save(newUser);
 
         URI location = ucb.path("/user/userById?id={id}")
                 .buildAndExpand(savedUser.getId()).toUri();
@@ -52,7 +48,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
-        userRepository.save(updatedUser);
+        userService.save(updatedUser);
 
         return ResponseEntity.noContent().build();
     }

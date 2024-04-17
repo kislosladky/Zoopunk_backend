@@ -5,8 +5,8 @@ COPY . /app
 
 RUN gradle build --no-daemon -x test
 
-#FROM arm32v7/eclipse-temurin:17-jre AS runtime-image
-FROM openjdk:17-alpine AS runtime-image
+FROM arm32v7/eclipse-temurin:17-jre AS runtime-image
+#FROM openjdk:17-alpine AS runtime-image
 
 COPY --from=compile-image /app/build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
 
