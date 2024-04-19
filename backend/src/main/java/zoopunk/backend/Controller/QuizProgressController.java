@@ -2,6 +2,7 @@ package zoopunk.backend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ public class QuizProgressController {
     @Autowired
     QuizProgressService quizProgressService;
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<QuizProgress> postQuizProgress(@RequestBody QuizProgress quizProgress) {
         quizProgressService.saveProgressAndGetAchievement(quizProgress);

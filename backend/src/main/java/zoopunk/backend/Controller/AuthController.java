@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +32,13 @@ public class AuthController {
     @PostMapping("/sign-in")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody @Valid SignInRequest request) {
         return ResponseEntity.ok(authenticationService.signIn(request));
+    }
+
+    @GetMapping("/guest")
+    public ResponseEntity<JwtAuthenticationResponse> signInAsGuest() {
+        SignInRequest signInRequest = SignInRequest.builder()
+                .username("guest").password("1111111").build();
+
+        return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 }

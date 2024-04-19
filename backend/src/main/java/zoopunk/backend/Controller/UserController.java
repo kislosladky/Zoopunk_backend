@@ -3,6 +3,7 @@ package zoopunk.backend.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class UserController {
         return ResponseEntity.of(response);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
         User newUser = new User(null,
@@ -46,6 +48,7 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
         userService.save(updatedUser);
