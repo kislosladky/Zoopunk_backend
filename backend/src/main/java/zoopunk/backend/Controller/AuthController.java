@@ -37,7 +37,7 @@ public class AuthController {
     @GetMapping("/guest")
     public ResponseEntity<JwtAuthenticationResponse> signInAsGuest() {
         SignInRequest signInRequest = SignInRequest.builder()
-                .username("guest").password("1111111").build();
+                .username("guest").password("11111111").build();
 
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }

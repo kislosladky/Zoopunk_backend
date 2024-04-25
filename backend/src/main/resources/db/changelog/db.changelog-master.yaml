@@ -36,5 +36,5 @@ databaseChangeLog:
   - include:
       file: db/changelog/db.changelog.18-simplify-user.sql
   - include:
-      file: db/changelog/db.changelog.19-adding-guest.sql
+      file: db/changelog/db.changelog.19-adding-guest-user.sql
 
