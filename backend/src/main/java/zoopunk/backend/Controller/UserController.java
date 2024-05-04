@@ -1,19 +1,19 @@
 package zoopunk.backend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import zoopunk.backend.EntityList.UserList;
+import zoopunk.backend.dto.UpdateStatus;
 import zoopunk.backend.Service.UserService;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.dto.UserUpdate;
+import zoopunk.backend.exception.BadUserUpdateException;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,11 +49,25 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @PutMapping("/update")
-    public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
-        userService.save(updatedUser);
+    @PatchMapping("/update")
+    public ResponseEntity<UpdateStatus> updateUser(@RequestBody UserUpdate userUpdate) {
+        UpdateStatus updateStatus;
+        try {
+            userService.updateUser(userUpdate);
+        } catch (BadUserUpdateException exception) {
+            updateStatus = UpdateStatus.builder()
+                    .status("Error")
+                    .message(exception.getMessage())
+                    .build();
+            return ResponseEntity.ok(updateStatus);
+        }
 
-        return ResponseEntity.noContent().build();
+        updateStatus = UpdateStatus.builder()
+                .status("Ok")
+                .message("Ok")
+                .build();
+
+        return ResponseEntity.ok(updateStatus);
     }
 
 }

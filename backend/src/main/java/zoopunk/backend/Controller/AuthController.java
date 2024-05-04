@@ -13,6 +13,7 @@ import zoopunk.backend.Service.AuthenticationService;
 import zoopunk.backend.dto.JwtAuthenticationResponse;
 import zoopunk.backend.dto.SignInRequest;
 import zoopunk.backend.dto.SignUpRequest;
+import zoopunk.backend.exception.BadSignupException;
 
 @Controller
 @RequestMapping("/auth")
@@ -25,7 +26,16 @@ public class AuthController {
 //    @Operation(summary = "Регистрация пользователя")
     @PostMapping("/sign-up")
     public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody @Valid SignUpRequest request) {
-        return ResponseEntity.ok(authenticationService.signUp(request));
+        try {
+            return ResponseEntity.ok(authenticationService.signUp(request));
+        } catch (BadSignupException e) {
+            var response = JwtAuthenticationResponse.builder()
+                    .status("Error")
+                    .message(e.getMessage())
+                    .token(null)
+                    .build();
+            return ResponseEntity.ok(response);
+        }
     }
 
 //    @Operation(summary = "Авторизация пользователя")

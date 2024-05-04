@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import zoopunk.backend.Entity.Role;
@@ -11,6 +12,7 @@ import zoopunk.backend.dto.JwtAuthenticationResponse;
 import zoopunk.backend.dto.SignInRequest;
 import zoopunk.backend.dto.SignUpRequest;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.exception.BadSignupException;
 
 import java.util.UUID;
 
@@ -28,7 +30,7 @@ public class AuthenticationService {
      * @param request данные пользователя
      * @return токен
      */
-    public JwtAuthenticationResponse signUp(SignUpRequest request) {
+    public JwtAuthenticationResponse signUp(SignUpRequest request) throws BadSignupException {
 
         var user = User.builder()
                 .id(UUID.randomUUID())
@@ -43,9 +45,11 @@ public class AuthenticationService {
         userService.create(user);
 
         var jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
+        return new JwtAuthenticationResponse(jwt, "Ok", "Ok");
     }
 
+
+    //TODO to check
     /**
      * Аутентификация пользователя
      *
@@ -53,26 +57,22 @@ public class AuthenticationService {
      * @return токен
      */
     public JwtAuthenticationResponse signIn(SignInRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
-        ));
+
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    request.getUsername(),
+                    request.getPassword()
+            ));
+        } catch (AuthenticationException exception) {
+            return new JwtAuthenticationResponse(null, "Error", "Неправильный логин или пароль");
+        }
 
         var user = userService
                 .userDetailsService()
                 .loadUserByUsername(request.getUsername());
 
         var jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
-    }
 
-//    public AuthenticationService(UserService userService,
-//                                 JwtService jwtService,
-//                                 PasswordEncoder passwordEncoder,
-//                                 AuthenticationManager authenticationManager) {
-//        this.userService = userService;
-//        this.jwtService = jwtService;
-//        this.passwordEncoder = passwordEncoder;
-//        this.authenticationManager = authenticationManager;
-//    }
+        return new JwtAuthenticationResponse(jwt, "Ok", "Ok");
+    }
 }
