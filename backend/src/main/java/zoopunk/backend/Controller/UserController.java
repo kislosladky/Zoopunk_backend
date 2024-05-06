@@ -1,7 +1,9 @@
 package zoopunk.backend.Controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -70,4 +72,11 @@ public class UserController {
         return ResponseEntity.ok(updateStatus);
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<UpdateStatus> handleAccessDeniedException(Exception ex, HttpServletRequest request){
+        var updateStatus = UpdateStatus.builder()
+                .status("Error")
+                .message("Для данного действия необходимо войти в приложение").build();
+        return ResponseEntity.ok(updateStatus);
+    }
 }

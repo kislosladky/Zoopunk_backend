@@ -1,14 +1,12 @@
 package zoopunk.backend.Controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.CurrentSecurityContext;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import zoopunk.backend.Entity.AchievementProgress;
@@ -16,6 +14,7 @@ import zoopunk.backend.Entity.User;
 import zoopunk.backend.EntityList.AchievementList;
 import zoopunk.backend.Service.AchievementService;
 import zoopunk.backend.dto.AchievementDto;
+import zoopunk.backend.dto.UpdateStatus;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,4 +47,11 @@ public class AchievementController {
         return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<UpdateStatus> handleAccessDeniedException(Exception ex, HttpServletRequest request){
+        var updateStatus = UpdateStatus.builder()
+                .status("Error")
+                .message("Для данного действия необходимо войти в приложение").build();
+        return ResponseEntity.ok(updateStatus);
+    }
 }
