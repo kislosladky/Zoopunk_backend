@@ -65,7 +65,7 @@ public class AuthController {
         }
 
         var response = JwtAuthenticationResponse.builder()
-                .token(null)
+                .token("")
                 .status("Error")
                 .message(message.toString()).build();
 
