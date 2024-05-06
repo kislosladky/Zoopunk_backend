@@ -3,12 +3,12 @@ package zoopunk.backend.Controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import zoopunk.backend.Service.AuthenticationService;
 import zoopunk.backend.dto.JwtAuthenticationResponse;
 import zoopunk.backend.dto.SignInRequest;
@@ -50,5 +50,14 @@ public class AuthController {
                 .username("guest").password("11111111").build();
 
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<JwtAuthenticationResponse> handleConstraintViolation(MethodArgumentNotValidException ex, WebRequest request) {
+        var response = JwtAuthenticationResponse.builder()
+                .token(null)
+                .status("Error")
+                .message(ex.getMessage()).build();
+        return ResponseEntity.ok(response);
     }
 }
