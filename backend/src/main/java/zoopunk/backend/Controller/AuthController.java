@@ -35,7 +35,7 @@ public class AuthController {
             var response = JwtAuthenticationResponse.builder()
                     .status("Error")
                     .message(e.getMessage())
-                    .token(null)
+                    .token("")
                     .build();
             return ResponseEntity.ok(response);
         }

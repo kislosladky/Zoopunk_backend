@@ -64,7 +64,7 @@ public class AuthenticationService {
                     request.getPassword()
             ));
         } catch (AuthenticationException exception) {
-            return new JwtAuthenticationResponse(null, "Error", "Неправильный логин или пароль");
+            return new JwtAuthenticationResponse("", "Error", "Неправильный логин или пароль");
         }
 
         var user = userService
