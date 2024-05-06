@@ -58,13 +58,17 @@ public class AuthController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<JwtAuthenticationResponse> handleConstraintViolation(MethodArgumentNotValidException ex, WebRequest request) {
         List<FieldError> errors = ex.getFieldErrors();
+        StringBuilder message = new StringBuilder();
         for (FieldError error : errors) {
-            System.err.println(error.getField() + "with" + error.getDefaultMessage());
+            message.append(error.getDefaultMessage());
+            message.append("\n");
         }
+
         var response = JwtAuthenticationResponse.builder()
                 .token(null)
                 .status("Error")
-                .message(ex.getMessage()).build();
+                .message(message.toString()).build();
+
         return ResponseEntity.ok(response);
     }
 }
