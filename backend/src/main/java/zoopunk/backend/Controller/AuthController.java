@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -14,6 +15,8 @@ import zoopunk.backend.dto.JwtAuthenticationResponse;
 import zoopunk.backend.dto.SignInRequest;
 import zoopunk.backend.dto.SignUpRequest;
 import zoopunk.backend.exception.BadSignupException;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/auth")
@@ -54,6 +57,10 @@ public class AuthController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<JwtAuthenticationResponse> handleConstraintViolation(MethodArgumentNotValidException ex, WebRequest request) {
+        List<FieldError> errors = ex.getFieldErrors();
+        for (FieldError error : errors) {
+            System.err.println(error.getField() + "with" + error.getDefaultMessage());
+        }
         var response = JwtAuthenticationResponse.builder()
                 .token(null)
                 .status("Error")
