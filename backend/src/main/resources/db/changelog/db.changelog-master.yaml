@@ -27,8 +27,8 @@ databaseChangeLog:
       file: db/changelog/db.changelog.13-add-curPoints-achievements.sql
   - include:
       file: db/changelog/db.changelog.14-routes.sql
-  - include:
-      file: db/changelog/db.changelog.15-more-animal-coordinates.sql
+#  - include:
+#      file: db/changelog/db.changelog.15-more-animal-coordinates.sql
   - include:
       file: db/changelog/db.changelog.16-authorization.sql
   - include:
@@ -37,4 +37,6 @@ databaseChangeLog:
       file: db/changelog/db.changelog.18-simplify-user.sql
   - include:
       file: db/changelog/db.changelog.19-adding-guest-mock.sql
+  - include:
+      file: db/changelog/db.changelog.20-adding-lots-animals.sql
 
