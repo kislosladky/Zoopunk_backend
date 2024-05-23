@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
