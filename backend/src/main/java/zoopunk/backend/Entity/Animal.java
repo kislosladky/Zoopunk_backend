@@ -1,6 +1,5 @@
 package zoopunk.backend.Entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,9 +10,10 @@ import org.hibernate.annotations.ColumnTransformer;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name="animals")
 public class Animal {
     @Column(name="id")

@@ -1,5 +1,6 @@
 package zoopunk.backend.Service;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zoopunk.backend.Entity.Achievement;
@@ -54,6 +55,7 @@ public class QuizProgressService {
                     new AchievementProgress(quizProgress.getUserid(),
                             achievementId,
                             achievement.getPointsfordone());
+
             achievementProgressRepository.save(progress);
         }
     }

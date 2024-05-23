@@ -1,17 +1,21 @@
 package zoopunk.backend.Controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import zoopunk.backend.EntityList.UserList;
+import zoopunk.backend.dto.UpdateStatus;
 import zoopunk.backend.Service.UserService;
 import zoopunk.backend.Entity.User;
+import zoopunk.backend.dto.UserUpdate;
+import zoopunk.backend.exception.BadUserUpdateException;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,28 +25,23 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //TODO получать юзера по логину(почте или типа того)
     @GetMapping("/userById")
-    public ResponseEntity<User> getUserById(@RequestParam UUID id) {
+    public ResponseEntity<User> getUserById() {
+        UUID id = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> response = userService.findById(id);
         return ResponseEntity.of(response);
     }
 
-    @GetMapping("/ageBetween")
-    public ResponseEntity<UserList> getUsersWithAgeBetween(@RequestParam Integer lowerAge, @RequestParam Integer upperAge) {
-        List<User> response = userService.findByAgeBetween(lowerAge, upperAge);
-        if (!response.isEmpty()) {
-            UserList userList = new UserList();
-            userList.setUserList(response);
-            return ResponseEntity.ok(userList);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
+    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<Void> postUser(@RequestBody User user, UriComponentsBuilder ucb) {
-        User newUser = new User(null, user.getFirstName(), user.getLastName(), user.getNickname(), user.getAge(), user.getImage());
+        User newUser = new User(null,
+                user.getPassword(),
+                user.getEmail(),
+                user.getRole(),
+                user.getFirstname(),
+                user.getUsername(),
+                user.getImage());
 
         User savedUser = userService.save(newUser);
 
@@ -51,11 +50,33 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Void> updateUser(@RequestBody User updatedUser) {
-        userService.save(updatedUser);
+    @PreAuthorize("hasRole('USER')")
+    @PatchMapping("/update")
+    public ResponseEntity<UpdateStatus> updateUser(@RequestBody UserUpdate userUpdate) {
+        UpdateStatus updateStatus;
+        try {
+            userService.updateUser(userUpdate);
+        } catch (BadUserUpdateException exception) {
+            updateStatus = UpdateStatus.builder()
+                    .status("Error")
+                    .message(exception.getMessage())
+                    .build();
+            return ResponseEntity.ok(updateStatus);
+        }
 
-        return ResponseEntity.noContent().build();
+        updateStatus = UpdateStatus.builder()
+                .status("Ok")
+                .message("Ok")
+                .build();
+
+        return ResponseEntity.ok(updateStatus);
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<UpdateStatus> handleAccessDeniedException(Exception ex, HttpServletRequest request){
+        var updateStatus = UpdateStatus.builder()
+                .status("Error")
+                .message("Для данного действия необходимо войти в приложение").build();
+        return ResponseEntity.ok(updateStatus);
+    }
 }

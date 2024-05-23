@@ -1,0 +1,2 @@
+INSERT INTO users (id, password, email, role, firstname, username, image)
+    VALUES ('083e404f-1d03-4b42-8b54-1c5b7225558a', '$2a$10$8ytZq3Iu/pLHUpMVYmhkKuCZbiKz67L7qW9oEQcCuUDkj7ek8fC6m', 'guest@gmail.com', 'ROLE_GUEST', 'гость', 'guest', 'parrotAva.png');
