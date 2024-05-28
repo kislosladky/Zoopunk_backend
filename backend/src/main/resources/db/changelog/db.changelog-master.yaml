@@ -39,4 +39,6 @@ databaseChangeLog:
       file: db/changelog/db.changelog.19-adding-guest-mock.sql
   - include:
       file: db/changelog/db.changelog.20-adding-correct-animals.sql
+  - include:
+      file: db/changelog/db.changelog.21-adding-better-coordinates.sql
 
