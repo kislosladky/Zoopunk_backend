@@ -1,3 +1,17 @@
+DROP TABLE IF EXISTS animals;
+
+CREATE TABLE animals (
+        id              UUID PRIMARY KEY NOT NULL,
+        name            TEXT,
+        animalclass     TEXT,
+        family          TEXT,
+        species         TEXT,
+        description     TEXT,
+        imgpath         TEXT,
+        background      TEXT,
+        longitude       REAL,
+        latitude        REAL
+);
 
 INSERT INTO animals (id, name, animalclass, family, species, description, imgpath, background, latitude, longitude) VALUES ('100c467a-411d-46d7-b43f-ba09e8ee9a1d', 'Кенгуру Беннетта', 'Млекопитающие', 'Сумчатые', 'Кенгуру Беннетта', 'Видовое название дано в честь австралийского натуралиста Джорджа Беннетта. Распространен в Юго-Восточной Австралии, на о. Тасмания. Внесен в Международную Красную книгу.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdEhDnIQeqpDphtScdr6UqT5TbTGhbwI2vBJhNXGRJOckucpfLzkKlpQWxXg&s', '2f3d00', 55.05349261985931, 82.87835848132285);
 INSERT INTO animals (id, name, animalclass, family, species, description, imgpath, background, latitude, longitude) VALUES ('23ec11ca-c76c-4d27-8f62-5679a4249150', 'Большой серый кенгуру', 'Млекопитающие', 'Сумчатые', 'Большой серый кенгуру', 'Обитает в Восточной и Юго-Западной Австралии. Также можно их встретить на о. Тасмании. Их обычный биотоп - это эвкалиптовая саванна. Встречаются также на покрытых густой растительностью равнинах и в открытых дождевых лесах.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLWSZt5Q3m_93-sPZ4E06se9YIujgzwPup77RhJjwAUZ0ewi0S0w2-eq8tlw&s', '2f3d00', 55.05751932120553, 82.87411113909081);
